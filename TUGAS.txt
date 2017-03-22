@@ -1,0 +1,14 @@
+Nama Kelompok : QWERTY
+Anggota Kelompok:
+- Andy Willianto (14.111.0302)
+- Jeffrey Onggo (14.111.0221)
+- Rico (14.111.0264)
+
+
+Aplikasi yang disimulasikan : Mobile BCA (mobile banking)
+Fitur-fitur yang disimulasikan : 
+1. Cek Saldo --> User bisa mengecek sisa saldo yang ada di rekeningnya.
+2. Transfer --> User bisa melakukan transfer baik antar rekening maupun dengan rekening lain.
+3. Cek History Transaksi --> mengecek seluruh transaksi yang perna dilakukan sebelumnya.
+4. Authentication --> meliputi registrasi, memasukkan m-pin sebelum transaksi serta login.
+5. Account Settings --> Agar user dapat mengelola akunnya sendiri berupa mengubah m-pin, kode akses, pemblokiran kartu.
