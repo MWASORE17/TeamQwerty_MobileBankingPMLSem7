@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Created by 10 on 4/2/2017.
+ * Created by 10 on 4/2/2017. by Andy Willianto
  */
 
 public class SessionManager{
