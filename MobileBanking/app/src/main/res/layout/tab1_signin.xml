@@ -9,7 +9,7 @@
     tools:context="qwerty.mobilebanking.home$PlaceholderFragment">
     <TableRow
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="match_parent"
         android:background="#0f3d6f"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"

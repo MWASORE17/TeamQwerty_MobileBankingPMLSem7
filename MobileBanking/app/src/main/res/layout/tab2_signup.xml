@@ -15,8 +15,8 @@
 
     <TableRow
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:background="#0f3d6f"
+        android:layout_height="match_parent"
+        android:background="#ffff"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:id="@+id/tableRow">
