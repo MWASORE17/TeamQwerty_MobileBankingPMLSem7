@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,54 +7,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="qwerty.mobilebanking.home">
+    tools:context="qwerty.mobilebanking.home"
+    android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:background="#4e739b"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
+        app:layout_scrollFlags="scroll|enterAlways">
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="#0f3d6f"
+            android:layout_height="200dp"
+            android:background="@drawable/cardview1"
             android:textAlignment="center"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
-
+            app:layout_scrollFlags="scroll|enterAlways">
         </android.support.v7.widget.Toolbar>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="8dp"
-            tools:context=".menuAwal"
-            >
-                <android.support.v7.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scrollbars="vertical"
-                    android:id="@+id/recycler_view"
-                    >
-
-                </android.support.v7.widget.RecyclerView>
-
-
-        </RelativeLayout>
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tabs"
-            android:layout_marginRight="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_vertical_margin"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#0f3d6f"/>
-
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager
@@ -62,10 +30,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#4e739b"
-        android:paddingLeft="@dimen/activity_vertical_margin"
-        android:paddingRight="@dimen/activity_vertical_margin"
-
+        app:layout_scrollFlags="scroll|enterAlways"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-
-</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

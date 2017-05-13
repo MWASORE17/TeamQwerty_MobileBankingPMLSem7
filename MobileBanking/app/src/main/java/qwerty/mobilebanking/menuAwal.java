@@ -3,8 +3,10 @@ package qwerty.mobilebanking;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 /**
  * Created by 10 on 4/6/2017.
@@ -12,7 +14,9 @@ import android.widget.Button;
 
 public class menuAwal extends Activity {
     private SessionManager session;
-    private Button logOutButton;
+    private ImageButton logOutButton;
+    private AppBarLayout _appBarLayout;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -20,12 +24,17 @@ public class menuAwal extends Activity {
         setContentView(R.layout.menu_awal);
         session = new SessionManager(getApplicationContext());
         session.checkLogin();
-        logOutButton = (Button)findViewById(R.id.btnLogout);
+        logOutButton = (ImageButton) findViewById(R.id.btnLogout);
         logOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 session.logOut();
             }
         });
+        this.setTitle("Menu");
+
+
+
+
     }
 }
