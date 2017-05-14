@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:background="#2f4159"
     tools:context="qwerty.mobilebanking.home"
     android:orientation="vertical">
 
@@ -18,18 +19,27 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@drawable/cardview1"
+            android:layout_height="match_parent"
             android:textAlignment="center"
             app:layout_scrollFlags="scroll|enterAlways">
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="200px"
+        android:layout_marginBottom="50px">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/logo"
+            />
+    </LinearLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#4e739b"
         app:layout_scrollFlags="scroll|enterAlways"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 </LinearLayout>
