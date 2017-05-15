@@ -42,8 +42,6 @@ public class Tab1_SignIn  extends Fragment{
             public void onClick(View view) {
                 if(Objects.equals(etNoRekening.getText().toString(), "123456789")&& Objects.equals(etKodeAkses.getText().toString(), "admin")){
                     session.loginUser(etNoRekening.getText().toString(),etKodeAkses.getText().toString());
-                    Intent intent = new Intent(getActivity(), menuAwal.class);
-                    startActivity(intent);
                 }
             }
         });

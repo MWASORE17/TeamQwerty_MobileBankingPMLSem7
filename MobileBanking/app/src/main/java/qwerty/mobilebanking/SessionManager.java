@@ -23,7 +23,7 @@ public class SessionManager{
 
     public void checkLogin(){
         if(!sharePref.getBoolean("IsLoggedIn", false)){
-            Intent intent = new Intent(context,MainActivity.class);
+            Intent intent = new Intent(context,LoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             context.startActivity(intent);
@@ -34,11 +34,15 @@ public class SessionManager{
         editor.putString("NoRekening",noRekening);
         editor.putString(KODE_AKSES,kodeAkses);
         editor.commit();
+        Intent intent = new Intent(context, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        context.startActivity(intent);
     }
     public void logOut(){
         editor.clear();
         editor.commit();
-        Intent intent = new Intent(context,MainActivity.class);
+        Intent intent = new Intent(context,LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);
