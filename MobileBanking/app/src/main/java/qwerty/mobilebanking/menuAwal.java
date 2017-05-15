@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 /**
@@ -21,7 +20,7 @@ public class menuAwal extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.menu_awal);
+        setContentView(R.layout.activity_menu_awal);
         session = new SessionManager(getApplicationContext());
         session.checkLogin();
         logOutButton = (ImageButton) findViewById(R.id.btnLogout);

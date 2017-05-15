@@ -18,7 +18,7 @@ public class Tab2__SignUp  extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.tab2_signup, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_home_tab2_signup, container, false);
         _button = (Button) rootView.findViewById(R.id.button);
         _typeFaceRL = Typeface.createFromAsset(getActivity().getAssets(),"fonts/robotolight.ttf");
         _button.setTypeface(_typeFaceRL);

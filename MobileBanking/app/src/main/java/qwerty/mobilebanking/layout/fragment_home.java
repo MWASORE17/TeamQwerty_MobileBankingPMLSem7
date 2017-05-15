@@ -1,7 +1,5 @@
 package qwerty.mobilebanking.layout;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -31,7 +29,7 @@ public class fragment_home extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View _view = inflater.inflate(R.layout.fragment_home, container, false);
+        View _view = inflater.inflate(R.layout.fragment_menu_awal, container, false);
 
 
         return _view;

@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import java.util.Objects;
 
@@ -25,7 +24,7 @@ public class Tab1_SignIn  extends Fragment{
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.tab1_signin, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_home_tab1_signin, container, false);
         session = new SessionManager(getActivity());
 
         loginButton = (Button)rootView.findViewById(R.id.buttonLogin);
