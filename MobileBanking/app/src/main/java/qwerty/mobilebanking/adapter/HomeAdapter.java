@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -40,7 +41,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         final HomeAdapter.itemUserViewHolder _holder =(HomeAdapter.itemUserViewHolder) holder;
         final ItemObjek _itemObject = this._itemObjek.get(position);
         _holder.name.setText(_itemObject.getName());
-        _holder.image.setImageResource(_itemObject.getPhoto());
+        _holder.image.setBackgroundResource(_itemObject.getPhoto());
     }
 
     @Override
@@ -48,12 +49,12 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return _itemObjek.size();
     }
     private class itemUserViewHolder extends RecyclerView.ViewHolder{
-        private ImageView image;
+        private RelativeLayout image;
         private TextView name;
 
         public itemUserViewHolder(View itemView) {
             super(itemView);
-            image = (ImageView) itemView.findViewById(R.id.image_home_cardview);
+            image = (RelativeLayout) itemView.findViewById(R.id.layout_home_cardview);
             name = (TextView) itemView.findViewById(R.id.name_home_cardview);
         }
     }
