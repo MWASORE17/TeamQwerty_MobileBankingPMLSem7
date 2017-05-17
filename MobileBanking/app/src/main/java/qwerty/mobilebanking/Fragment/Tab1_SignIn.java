@@ -1,9 +1,8 @@
-package qwerty.mobilebanking;
+package qwerty.mobilebanking.Fragment;
 
 /**
  * Created by Rico Wu on 19/03/2017.
  */
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -14,6 +13,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.Objects;
+
+import qwerty.mobilebanking.R;
+import qwerty.mobilebanking.Model.SessionManager;
 
 public class Tab1_SignIn  extends Fragment{
     private Button loginButton;
@@ -28,10 +30,8 @@ public class Tab1_SignIn  extends Fragment{
         session = new SessionManager(getActivity());
 
         loginButton = (Button)rootView.findViewById(R.id.buttonLogin);
-
-
-
         _typeFaceRL = Typeface.createFromAsset(getActivity().getAssets(), "fonts/robotolight.ttf");
+
         loginButton.setTypeface(_typeFaceRL);
         loginButton.setText("AUTHENTICATE");
 
@@ -48,5 +48,6 @@ public class Tab1_SignIn  extends Fragment{
 
         return rootView;
     }
+
 }
 

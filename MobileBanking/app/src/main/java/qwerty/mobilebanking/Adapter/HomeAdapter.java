@@ -1,16 +1,11 @@
-package qwerty.mobilebanking.adapter;
+package qwerty.mobilebanking.Adapter;
 
-import android.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
-import org.w3c.dom.UserDataHandler;
 
 import java.util.List;
 

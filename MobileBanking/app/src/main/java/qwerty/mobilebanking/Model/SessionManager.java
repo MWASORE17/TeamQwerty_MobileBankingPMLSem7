@@ -1,8 +1,11 @@
-package qwerty.mobilebanking;
+package qwerty.mobilebanking.Model;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+
+import qwerty.mobilebanking.Activity.LoginActivity;
+import qwerty.mobilebanking.Activity.MainActivity;
 
 /**
  * Created by 10 on 4/2/2017. by Andy Willianto

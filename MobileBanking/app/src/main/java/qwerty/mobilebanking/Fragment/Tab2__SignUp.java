@@ -1,4 +1,4 @@
-package qwerty.mobilebanking;
+package qwerty.mobilebanking.Fragment;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import qwerty.mobilebanking.R;
 
 /**
  * Created by Rico Wu on 19/03/2017.

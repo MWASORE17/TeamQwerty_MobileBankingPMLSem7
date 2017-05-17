@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="#2f4159"
-    tools:context="qwerty.mobilebanking.LoginActivity"
+    tools:context="qwerty.mobilebanking.Activity.LoginActivity"
     android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout

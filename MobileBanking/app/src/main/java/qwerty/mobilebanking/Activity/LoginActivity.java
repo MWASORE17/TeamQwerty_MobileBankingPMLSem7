@@ -1,4 +1,4 @@
-package qwerty.mobilebanking;
+package qwerty.mobilebanking.Activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +13,11 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+
+import qwerty.mobilebanking.R;
+import qwerty.mobilebanking.Model.SessionManager;
+import qwerty.mobilebanking.Fragment.Tab1_SignIn;
+import qwerty.mobilebanking.Fragment.Tab2__SignUp;
 
 public class LoginActivity extends AppCompatActivity {
 

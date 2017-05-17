@@ -1,4 +1,4 @@
-package qwerty.mobilebanking.adapter;
+package qwerty.mobilebanking.Adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

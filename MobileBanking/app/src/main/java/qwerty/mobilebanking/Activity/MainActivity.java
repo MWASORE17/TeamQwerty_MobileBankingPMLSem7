@@ -1,14 +1,21 @@
-package qwerty.mobilebanking;
+package qwerty.mobilebanking.Activity;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
+import qwerty.mobilebanking.Animation.RippleActivity;
+import qwerty.mobilebanking.Fragment.Fragment_Home;
 import qwerty.mobilebanking.Model.ItemObjek;
+import qwerty.mobilebanking.R;
+import qwerty.mobilebanking.Model.SessionManager;
 
 /**
  * Created by 10 on 4/6/2017.
@@ -19,10 +26,13 @@ public class MainActivity extends Activity {
     private ImageButton logOutButton;
     private AppBarLayout _appBarLayout;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         session = new SessionManager(getApplicationContext());
         session.checkLogin();
         logOutButton = (ImageButton) findViewById(R.id.btnLogout);
@@ -34,7 +44,9 @@ public class MainActivity extends Activity {
         });
         this.setTitle("Menu");
         inisialisasiMenu();
-        changeFragment(new fragment_menu());
+        changeFragment(new Fragment_Home());
+
+
     }
 
     private void inisialisasiMenu(){
@@ -49,5 +61,10 @@ public class MainActivity extends Activity {
     }
     private void changeFragment(Fragment fragment){
         getFragmentManager().beginTransaction().replace(R.id.activity_main,fragment).commit();
+    }
+    public void checkRippleAnimated(View view)
+    {
+        Intent _intent = new Intent(this, RippleActivity.class);
+        startActivity(_intent);
     }
 }
