@@ -35,8 +35,6 @@
                     android:textSize="30dp"
                     android:textColor="#fff"
                     android:id="@+id/toolbar.title.main"/>
-
-
             </LinearLayout>
 
             <LinearLayout
@@ -53,12 +51,7 @@
                     android:src="@drawable/ic_cached_black_24dp" />
 
             </LinearLayout>
-
-
-
-
         </LinearLayout>
-
     </android.support.design.widget.AppBarLayout>
 
 </LinearLayout>
