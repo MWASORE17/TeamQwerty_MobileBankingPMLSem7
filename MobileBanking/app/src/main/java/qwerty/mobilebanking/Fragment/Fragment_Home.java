@@ -27,15 +27,12 @@ public class Fragment_Home extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cardview_home,container,false);
 
-
         adapter = new MenuAwalAdapter();
         rView = (RecyclerView)view.findViewById(R.id.recycler_menu);
         rView.setHasFixedSize(true);
         rView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter.setItemMenu(ItemObjek.itemMenu);
         rView.setAdapter(adapter);
-
-
         return view;
     }
 }

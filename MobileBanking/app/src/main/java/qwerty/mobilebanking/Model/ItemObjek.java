@@ -1,12 +1,13 @@
 package qwerty.mobilebanking.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by ricoa on 12/05/2017.
  */
 //untuk gambar dan text pada halaman Home Setelah login
-public class ItemObjek {
+public class ItemObjek implements Serializable {
 
     public ItemObjek(){}
 

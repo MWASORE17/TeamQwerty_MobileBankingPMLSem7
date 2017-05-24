@@ -85,12 +85,13 @@
 
 
     <Button
-        android:onClick="checkRippleAnimation"
         android:id="@+id/buttonLogin"
         android:layout_width="337dp"
         android:layout_height="20pt"
         android:text="A u t h e n t i c a t e"
         android:hapticFeedbackEnabled="true"
+        android:onClick="true"
+        android:foreground="?android:attr/selectableItemBackground"
         android:layout_marginRight="35dp"
         android:layout_marginLeft="35dp"
         android:ems="20"

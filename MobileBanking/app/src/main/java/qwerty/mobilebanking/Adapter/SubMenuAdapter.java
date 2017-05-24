@@ -38,7 +38,6 @@ public class SubMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         //_holder.namaMenu.setText(_itemMenu.getName());
         //_holder.layoutMenu.setBackgroundResource(_itemMenu.getPhoto());
 
-
     }
 
     @Override
@@ -51,7 +50,7 @@ public class SubMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         public IOGridViewHolder(View itemView) {
             super(itemView);
             namaSubMenu = (TextView)itemView.findViewById(R.id.item_title_grid);
-            layoutSubMenu = (RelativeLayout)itemView.findViewById(R.id.);
+            //layoutSubMenu = (RelativeLayout)itemView.findViewById(R.id.);
         }
     }
 }

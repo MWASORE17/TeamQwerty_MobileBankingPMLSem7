@@ -130,6 +130,8 @@
         android:layout_gravity="center"
         android:layout_marginRight="35dp"
         android:layout_marginLeft="35dp"
+        android:onClick="true"
+        android:foreground="?android:attr/selectableItemBackground"
         android:layout_height="20pt"
         android:text="r e g i s t e r"
         android:background="#009688"

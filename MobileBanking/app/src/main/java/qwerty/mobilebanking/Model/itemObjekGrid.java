@@ -34,5 +34,4 @@ public class itemObjekGrid
         this._photoGrid =_photoGrid;
     }
     public static ArrayList<itemObjekGrid> IOGrid = new ArrayList<>();
-
 }
