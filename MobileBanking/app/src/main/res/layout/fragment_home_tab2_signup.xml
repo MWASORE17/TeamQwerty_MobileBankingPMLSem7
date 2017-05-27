@@ -29,15 +29,15 @@
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textColorHint="#ccd8ef">
+        android:layout_height="wrap_content"
+        android:textColorHint="#ccd8ef"
+        android:id="@+id/fragment.signup.textInputLayout.noRek">
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/fragment.signup.editText.noRek"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="13"
             android:hint="Nomor Rekening"
-            android:textColorHint="#ffff"
             android:textColor="#ffff"
             android:backgroundTint="#3f5169"
             android:inputType="number"
@@ -69,14 +69,15 @@
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textColorHint="#ccd8ef">
+        android:layout_height="wrap_content"
+        android:textColorHint="#ccd8ef"
+        android:id="@+id/fragment.signup.textInputLayout.kodeAkses">
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/fragment.signup.editText.kodeAkses"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="13"
-            android:inputType="text"
+            android:inputType="textPassword"
             android:textColorHint="#ffff"
             android:textColor="#ffff"
             android:backgroundTint="#3f5169"
@@ -105,14 +106,15 @@
         android:layout_toStartOf="@+id/editText2"/>
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textColorHint="#ccd8ef">
+        android:layout_height="wrap_content"
+        android:textColorHint="#ccd8ef"
+        android:id="@+id/fragment.signup.textInputLayout.reKodeAkses">
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/fragment.signup.editText.reKodeAkses"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="13"
-            android:inputType="text"
+            android:inputType="textPassword"
             android:textColorHint="#ffff"
             android:textColor="#ffff"
             android:hint="Re-type Kode Akses"
@@ -125,12 +127,11 @@
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/register.button"
         android:layout_width="337dp"
         android:layout_gravity="center"
         android:layout_marginRight="35dp"
         android:layout_marginLeft="35dp"
-        android:onClick="true"
         android:foreground="?android:attr/selectableItemBackground"
         android:layout_height="20pt"
         android:text="r e g i s t e r"

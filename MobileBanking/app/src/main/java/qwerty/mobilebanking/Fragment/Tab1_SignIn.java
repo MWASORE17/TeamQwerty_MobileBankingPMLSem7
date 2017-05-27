@@ -4,8 +4,10 @@ package qwerty.mobilebanking.Fragment;
  * Created by Rico Wu on 19/03/2017.
  */
 import android.graphics.Typeface;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +16,13 @@ import android.widget.EditText;
 
 import java.util.Objects;
 
+import qwerty.mobilebanking.Model.User;
 import qwerty.mobilebanking.R;
 import qwerty.mobilebanking.Model.SessionManager;
 
 public class Tab1_SignIn  extends Fragment{
     private Button loginButton;
+    private TextInputLayout til_noRek, til_kodeAkses;
     private EditText etNoRekening;
     private EditText etKodeAkses;
     private SessionManager session;
@@ -37,11 +41,62 @@ public class Tab1_SignIn  extends Fragment{
 
         etNoRekening=(EditText)rootView.findViewById(R.id.editText);
         etKodeAkses=(EditText)rootView.findViewById(R.id.editText2);
+        til_noRek=(TextInputLayout)rootView.findViewById(R.id.fragment_signin_textInputLayout_noRek);
+        til_kodeAkses=(TextInputLayout)rootView.findViewById(R.id.fragment_signin_textInputLayout_kodeAkses);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(Objects.equals(etNoRekening.getText().toString(), "123456789")&& Objects.equals(etKodeAkses.getText().toString(), "admin")){
                     session.loginUser(etNoRekening.getText().toString(),etKodeAkses.getText().toString());
+                }
+                boolean _isvalid = true;
+                til_noRek.setErrorEnabled(false);
+                til_kodeAkses.setErrorEnabled(false);
+                if(TextUtils.isEmpty(etNoRekening.getText().toString())){
+                    _isvalid=false;
+                    til_noRek.setErrorEnabled(true);
+                    til_noRek.setError("Nomor Rekening Tidak Boleh Kosong");
+                }
+                else if(etNoRekening.getText().toString().length()!=16){
+                    _isvalid=false;
+                    til_noRek.setErrorEnabled(true);
+                    til_noRek.setError("Nomor Rekening Terdiri Dari 16 Digit Angka");
+                }
+                else if(TextUtils.isEmpty(etKodeAkses.getText().toString())){
+                    _isvalid=false;
+                    til_kodeAkses.setErrorEnabled(true);
+                    til_kodeAkses.setError("Kode Akses Tidak Boleh Kosong");
+                }
+                else if (etKodeAkses.getText().toString().length()<8){
+                    _isvalid=false;
+                    til_kodeAkses.setErrorEnabled(true);
+                    til_kodeAkses.setError("Password Terlalu Pendek");
+                }
+                if(_isvalid){
+                    boolean _isregistered = false,_ismatch = false;
+                    User _user = new User();
+                    for(User user : User.users){
+                        if(Objects.equals(user.getNoRek().toString(), etNoRekening.getText().toString())){
+                            if(Objects.equals(user.getKodeAkses().toString(), etKodeAkses.getText().toString())){
+                                _ismatch=true;
+                                _user = user;
+                            }
+                            _isregistered = true;
+                            break;
+                        }
+                    }
+
+                    if(!_isregistered){
+                        til_noRek.setErrorEnabled(true);
+                        til_noRek.setError("Nomor Rekening Belum Terdaftar");
+                    }
+                    else if(!_ismatch){
+                        til_kodeAkses.setErrorEnabled(true);
+                        til_kodeAkses.setError("Kode Akses Salah");
+                    }
+                    if(_isregistered && _ismatch){
+                        session.loginUser(_user.getNoRek(),_user.getKodeAkses());
+                    }
                 }
             }
         });

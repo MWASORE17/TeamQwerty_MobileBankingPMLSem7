@@ -14,10 +14,13 @@ import qwerty.mobilebanking.Activity.MainActivity;
 public class SessionManager{
     SharedPreferences sharePref;
     SharedPreferences.Editor editor;
+
     Context context;
+
     private static final String FILE_PREF = "UserPref";
     private static final String LOGGED_IN = "IsLoggedIn";
     private static final String KODE_AKSES = "KodeAkses";
+    private static final String NOMOR_REKENING = "NoRekening";
     public SessionManager(Context context){
         this.context = context;
         sharePref = context.getSharedPreferences(FILE_PREF,0);
@@ -34,7 +37,7 @@ public class SessionManager{
     }
     public void loginUser(String noRekening,String kodeAkses){
         editor.putBoolean(LOGGED_IN,true);
-        editor.putString("NoRekening",noRekening);
+        editor.putString(NOMOR_REKENING,noRekening);
         editor.putString(KODE_AKSES,kodeAkses);
         editor.commit();
         Intent intent = new Intent(context, MainActivity.class);

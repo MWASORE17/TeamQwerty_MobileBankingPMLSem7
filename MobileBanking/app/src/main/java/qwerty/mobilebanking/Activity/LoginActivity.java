@@ -1,5 +1,6 @@
 package qwerty.mobilebanking.Activity;
 
+import android.media.MediaCodec;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -14,6 +15,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import qwerty.mobilebanking.R;
 import qwerty.mobilebanking.Model.SessionManager;
 import qwerty.mobilebanking.Fragment.Tab1_SignIn;
@@ -24,6 +28,8 @@ public class LoginActivity extends AppCompatActivity {
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
     private SessionManager session;
+
+    public LoginActivity(){}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,4 +96,24 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    public static boolean isNoRekValid(String noRek){
+        String _expression = "\\b\\d{4}(| |-)\\d{4}\\1\\d{4}\\1\\d{4}\\b";
+        CharSequence _noRek = noRek;
+        Pattern _pattern = Pattern.compile(_expression);
+        Matcher _matcher = _pattern.matcher(_noRek);
+        if(_matcher.matches()){
+            return true;
+        }
+        return false;
+    }
+    public static boolean isKodeAksesValid(String kodeAkses){
+        String _expression = "\"^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$\"";
+        CharSequence _kodeAkses = kodeAkses;
+        Pattern _pattern = Pattern.compile(_expression);
+        Matcher _matcher = _pattern.matcher(_kodeAkses);
+        if(_matcher.matches()){
+            return true;
+        }
+        return false;
+    }
 }

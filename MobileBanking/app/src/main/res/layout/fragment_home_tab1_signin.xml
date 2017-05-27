@@ -29,14 +29,15 @@
        <android.support.design.widget.TextInputLayout
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:textColorHint="#ccd8ef">
+           android:textColorHint="#ccd8ef"
+           android:id="@+id/fragment.signin.textInputLayout.noRek">
 
            <EditText
                android:id="@+id/editText"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_above="@+id/imageView2"
-               android:layout_alignStart="@+id/editText2"
+               android:layout_alignStart="@+id/fragment.signin.editText.noRek"
                android:backgroundTint="#3f5169"
                android:ems="13"
                android:hint="Nomor Rekening"
@@ -65,13 +66,13 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="#f4fdff">
-
+            android:textColorHint="#f4fdff"
+            android:id="@+id/fragment.signin.textInputLayout.kodeAkses">
             <EditText
                 android:id="@+id/editText2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/buttonLogin"
+                android:layout_alignEnd="@+id/fragment.signin.editText.kodeAkses"
                 android:layout_below="@id/editText"
                 android:layout_marginTop="17dp"
                 android:ems="13"

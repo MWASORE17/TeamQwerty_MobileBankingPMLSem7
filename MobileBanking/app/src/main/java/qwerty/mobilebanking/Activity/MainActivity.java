@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import qwerty.mobilebanking.Fragment.Fragment_Home;
 import qwerty.mobilebanking.Model.ItemObjek;
+import qwerty.mobilebanking.Model.User;
 import qwerty.mobilebanking.R;
 import qwerty.mobilebanking.Model.SessionManager;
 
@@ -41,6 +42,7 @@ public class MainActivity extends Activity {
         });
         this.setTitle("Menu");
         inisialisasiMenu();
+        inisialisasiUser();
         changeFragment(new Fragment_Home());
     }
 
@@ -54,6 +56,19 @@ public class MainActivity extends Activity {
         ItemObjek.itemMenu.add(cekSaldo);
         ItemObjek.itemMenu.add(historiTransaksi);
         ItemObjek.itemMenu.add(pengaturanAkun);
+    }
+    private void inisialisasiUser(){
+        User a = new User("1111111111111111","password");
+        User b = new User("1111111111111112","password");
+        User c = new User("1111111111111113","password");
+        User d = new User("1111111111111114","password");
+        User e = new User("1111111111111115","password");
+        User.users.clear();
+        User.users.add(a);
+        User.users.add(b);
+        User.users.add(c);
+        User.users.add(d);
+        User.users.add(e);
     }
     private void changeFragment(Fragment fragment){
         getFragmentManager().beginTransaction().replace(R.id.activity_main,fragment).commit();
