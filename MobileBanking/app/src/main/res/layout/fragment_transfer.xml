@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+    <TextView
+        android:id="@+id/fragment.transfer.textView.saldo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Saldo"
+        android:textSize="20sp"/>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment.transfer.textInputLayout.noRekTjuan">
+        <EditText
+            android:id="@+id/fragment.transfer.editText.noRekTujuan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nomor Rekening Tujuan"
+            android:inputType="number"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment.transfer.textInputLayout.nominalTransfer">
+        <EditText
+            android:id="@+id/fragment.transfer.editText.nominalTransfer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nominal"
+            android:inputType="number"/>
+    </android.support.design.widget.TextInputLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="T r a n s f e r"
+        android:id="@+id/fragment.transfer.button.transfer"/>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:id="@+id/fragment.transfer.recyclerView.historiTransaksi">
+
+    </android.support.v7.widget.RecyclerView>
+</LinearLayout>

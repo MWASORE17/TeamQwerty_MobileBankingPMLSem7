@@ -18,6 +18,7 @@ import android.widget.Button;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import qwerty.mobilebanking.Model.User;
 import qwerty.mobilebanking.R;
 import qwerty.mobilebanking.Model.SessionManager;
 import qwerty.mobilebanking.Fragment.Tab1_SignIn;
@@ -27,7 +28,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
-    private SessionManager session;
 
     public LoginActivity(){}
 
@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setVisibility(View.GONE);
-
+        inisialisasiUser();
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -57,7 +57,19 @@ public class LoginActivity extends AppCompatActivity {
         //endregion
 
     }
-
+    private void inisialisasiUser(){
+        User a = new User("1111111111111111","password",100001);
+        User b = new User("1111111111111112","password",100002);
+        User c = new User("1111111111111113","password",100003);
+        User d = new User("1111111111111114","password",100004);
+        User e = new User("1111111111111115","password",100005);
+        User.users.clear();
+        User.users.add(a);
+        User.users.add(b);
+        User.users.add(c);
+        User.users.add(d);
+        User.users.add(e);
+    }
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);

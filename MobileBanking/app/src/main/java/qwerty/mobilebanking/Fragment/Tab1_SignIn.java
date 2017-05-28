@@ -16,6 +16,7 @@ import android.widget.EditText;
 
 import java.util.Objects;
 
+import qwerty.mobilebanking.Activity.MainActivity;
 import qwerty.mobilebanking.Model.User;
 import qwerty.mobilebanking.R;
 import qwerty.mobilebanking.Model.SessionManager;
@@ -25,13 +26,13 @@ public class Tab1_SignIn  extends Fragment{
     private TextInputLayout til_noRek, til_kodeAkses;
     private EditText etNoRekening;
     private EditText etKodeAkses;
-    private SessionManager session;
+    //private SessionManager session;
     private Typeface _typeFaceRL;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home_tab1_signin, container, false);
-        session = new SessionManager(getActivity());
+        //session = new SessionManager(getActivity());
 
         loginButton = (Button)rootView.findViewById(R.id.buttonLogin);
         _typeFaceRL = Typeface.createFromAsset(getActivity().getAssets(), "fonts/robotolight.ttf");
@@ -46,9 +47,9 @@ public class Tab1_SignIn  extends Fragment{
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(Objects.equals(etNoRekening.getText().toString(), "123456789")&& Objects.equals(etKodeAkses.getText().toString(), "admin")){
+                /*if(Objects.equals(etNoRekening.getText().toString(), "123456789")&& Objects.equals(etKodeAkses.getText().toString(), "admin")){
                     session.loginUser(etNoRekening.getText().toString(),etKodeAkses.getText().toString());
-                }
+                }*/
                 boolean _isvalid = true;
                 til_noRek.setErrorEnabled(false);
                 til_kodeAkses.setErrorEnabled(false);
@@ -74,12 +75,11 @@ public class Tab1_SignIn  extends Fragment{
                 }
                 if(_isvalid){
                     boolean _isregistered = false,_ismatch = false;
-                    User _user = new User();
                     for(User user : User.users){
-                        if(Objects.equals(user.getNoRek().toString(), etNoRekening.getText().toString())){
-                            if(Objects.equals(user.getKodeAkses().toString(), etKodeAkses.getText().toString())){
+                        if(Objects.equals(user.getNoRek(), etNoRekening.getText().toString())){
+                            if(Objects.equals(user.getKodeAkses(), etKodeAkses.getText().toString())){
                                 _ismatch=true;
-                                _user = user;
+                                User.loggedInUser = user;
                             }
                             _isregistered = true;
                             break;
@@ -95,7 +95,8 @@ public class Tab1_SignIn  extends Fragment{
                         til_kodeAkses.setError("Kode Akses Salah");
                     }
                     if(_isregistered && _ismatch){
-                        session.loginUser(_user.getNoRek(),_user.getKodeAkses());
+                        SessionManager.with(getActivity()).loginUser(User.loggedInUser.getNoRek(),User.loggedInUser.getKodeAkses());
+
                     }
                 }
             }

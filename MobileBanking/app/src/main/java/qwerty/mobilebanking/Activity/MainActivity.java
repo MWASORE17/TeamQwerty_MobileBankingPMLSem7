@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import qwerty.mobilebanking.Fragment.Fragment_Home;
+import qwerty.mobilebanking.Fragment.Fragment_Transfer;
 import qwerty.mobilebanking.Model.ItemObjek;
 import qwerty.mobilebanking.Model.User;
 import qwerty.mobilebanking.R;
@@ -22,7 +23,7 @@ import qwerty.mobilebanking.Model.SessionManager;
  */
 
 public class MainActivity extends Activity {
-    private SessionManager session;
+    public SessionManager session;
     private ImageButton logOutButton;
     private AppBarLayout _appBarLayout;
 
@@ -31,19 +32,29 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        session = new SessionManager(getApplicationContext());
-        session.checkLogin();
+        this.setTitle("Menu");
+        init();
+        event();
+        inisialisasiMenu();
+        //inisialisasiUser();
+        //session.checkLogin();
+        changeFragment(new Fragment_Transfer());//<=============================GANTI FRAGMENT AWAL
+    }
+    private void init(){
         logOutButton = (ImageButton) findViewById(R.id.btnLogout);
+        session = new SessionManager(getApplicationContext());
+    }
+    private void event(){
         logOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 session.logOut();
+                Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                getApplicationContext().startActivity(intent);
             }
         });
-        this.setTitle("Menu");
-        inisialisasiMenu();
-        inisialisasiUser();
-        changeFragment(new Fragment_Home());
     }
 
     private void inisialisasiMenu(){
@@ -57,21 +68,14 @@ public class MainActivity extends Activity {
         ItemObjek.itemMenu.add(historiTransaksi);
         ItemObjek.itemMenu.add(pengaturanAkun);
     }
-    private void inisialisasiUser(){
-        User a = new User("1111111111111111","password");
-        User b = new User("1111111111111112","password");
-        User c = new User("1111111111111113","password");
-        User d = new User("1111111111111114","password");
-        User e = new User("1111111111111115","password");
-        User.users.clear();
-        User.users.add(a);
-        User.users.add(b);
-        User.users.add(c);
-        User.users.add(d);
-        User.users.add(e);
-    }
+
     private void changeFragment(Fragment fragment){
         getFragmentManager().beginTransaction().replace(R.id.activity_main,fragment).commit();
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        session.logOut();
+    }
 }

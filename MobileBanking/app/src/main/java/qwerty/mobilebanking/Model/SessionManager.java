@@ -23,8 +23,12 @@ public class SessionManager{
     private static final String NOMOR_REKENING = "NoRekening";
     public SessionManager(Context context){
         this.context = context;
-        sharePref = context.getSharedPreferences(FILE_PREF,0);
-        editor = sharePref.edit();
+        this.sharePref = context.getSharedPreferences(FILE_PREF,0);
+        this.editor = sharePref.edit();
+    }
+
+    public static SessionManager with(Context context){
+        return new SessionManager(context);
     }
 
     public void checkLogin(){
@@ -45,16 +49,12 @@ public class SessionManager{
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);
     }
+    public String getLoggedIn(){
+        return sharePref.getString(NOMOR_REKENING,null);
+    }
     public void logOut(){
         editor.clear();
         editor.commit();
-        Intent intent = new Intent(context,LoginActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        context.startActivity(intent);
-    }
-    public boolean isLoggedIn(){
-        return sharePref.getBoolean("IsLoggedIn", false);
     }
 }
 

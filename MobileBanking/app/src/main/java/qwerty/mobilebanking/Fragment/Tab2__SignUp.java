@@ -109,7 +109,7 @@ public class Tab2__SignUp  extends Fragment {
                 }
 
                 if(_isvalid){
-                    User.users.add(new User(et_noRek.getText().toString(),et_kodeAkses.getText().toString()));
+                    User.users.add(new User(et_noRek.getText().toString(),et_kodeAkses.getText().toString(),0));
                     et_noRek.setText("");
                     et_kodeAkses.setText("");
                     et_reKodeAkses.setText("");

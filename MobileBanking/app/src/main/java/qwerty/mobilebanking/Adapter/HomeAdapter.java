@@ -54,6 +54,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public int getItemCount() {
         return _itemObjek.size();
     }
+
     private class itemUserViewHolder extends RecyclerView.ViewHolder{
         private RelativeLayout image;
         private TextView name;
