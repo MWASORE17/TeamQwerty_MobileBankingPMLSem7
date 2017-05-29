@@ -1,6 +1,5 @@
 package qwerty.mobilebanking.Adapter;
 
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,11 +7,9 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import qwerty.mobilebanking.Fragment.Fragment_Sub_Menu;
 import qwerty.mobilebanking.Model.ItemObjek;
 import qwerty.mobilebanking.R;
 
@@ -39,15 +36,6 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         _holder.name.setText(itemObject.getName());
         _holder.image.setBackgroundResource(itemObject.getPhoto());
 
-        _holder.itemView.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v){
-                Intent _intent = new Intent(v.getContext(), Fragment_Sub_Menu.class);
-                _intent.putExtra("itemObjek", (Serializable) itemObject);
-                v.getContext().startActivity(_intent);
-            }
-        });
     }
 
     @Override

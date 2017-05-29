@@ -18,9 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.MainActivity">
-
-        </activity>
+        <activity android:name=".Activity.MainActivity"></activity>
+        <activity
+            android:name=".Activity.SubMenu"
+            android:label="@string/title_activity_sub_menu"></activity>
     </application>
 
 </manifest>

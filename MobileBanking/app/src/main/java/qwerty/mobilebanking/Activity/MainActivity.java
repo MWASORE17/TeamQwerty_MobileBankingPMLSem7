@@ -38,7 +38,8 @@ public class MainActivity extends Activity {
         inisialisasiMenu();
         //inisialisasiUser();
         //session.checkLogin();
-        changeFragment(new Fragment_Transfer());//<=============================GANTI FRAGMENT AWAL
+        //changeFragment(new Fragment_Transfer());//<=============================GANTI FRAGMENT AWAL
+        changeFragment(new Fragment_Home());
     }
     private void init(){
         logOutButton = (ImageButton) findViewById(R.id.btnLogout);

@@ -1,5 +1,6 @@
 package qwerty.mobilebanking.Adapter;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import qwerty.mobilebanking.Activity.SubMenu;
 import qwerty.mobilebanking.Model.ItemObjek;
 import qwerty.mobilebanking.R;
 
@@ -36,6 +38,15 @@ public class MenuAwalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         final ItemObjek _itemMenu = this.itemMenu.get(position);
         _holder.namaMenu.setText(_itemMenu.getName());
         _holder.layoutMenu.setBackgroundResource(_itemMenu.getPhoto());
+        _holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), SubMenu.class);
+
+                v.getContext().startActivity(intent);
+            }
+        });
+
     }
 
     @Override
