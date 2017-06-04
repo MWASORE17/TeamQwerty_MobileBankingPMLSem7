@@ -9,12 +9,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Activity.MainActivity">
 
-    <android.support.design.widget.AppBarLayout
+    <Toolbar
         android:id="@+id/appbar.menu.awal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="2dp"
         android:background="#2f4159"
+        android:paddingBottom="2dp"
         app:layout_scrollFlags="scroll|enterAlways">
 
         <LinearLayout
@@ -22,8 +22,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:orientation="horizontal">
+
             <LinearLayout
-                android:layout_width="343dp"
+                android:layout_width="320dp"
                 android:layout_height="wrap_content">
 
                 <TextView
@@ -31,7 +32,7 @@
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:layout_weight="0.1"
+                    android:layout_weight="0.02"
                     android:gravity="center"
                     android:text="Menu"
                     android:textColor="#fff"
@@ -41,7 +42,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right">
+                android:gravity="center">
+
                 <ImageButton
                     android:id="@+id/btnLogout"
                     android:layout_width="48dp"
@@ -52,6 +54,6 @@
 
             </LinearLayout>
         </LinearLayout>
-    </android.support.design.widget.AppBarLayout>
+    </Toolbar>
 
 </LinearLayout>

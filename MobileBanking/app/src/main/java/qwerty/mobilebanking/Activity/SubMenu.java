@@ -9,6 +9,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import qwerty.mobilebanking.Animation.BottomNavigationHelper;
@@ -22,17 +26,26 @@ public class SubMenu extends AppCompatActivity {
     private BottomNavigationView bottomNavigation;
     private Fragment fragment;
     private FragmentManager fragmentManager;
-    private TextView mTextMessage;
+    private ImageButton _imageButton;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub_menu);
 
+
+
         bottomNavigation = (BottomNavigationView) findViewById(R.id.navigation);
         BottomNavigationHelper.disableShiftMode(bottomNavigation);
+
         this.setTitle("Transaction");
+
+
+
 
         //inisialisasi fragment pertama
 
@@ -58,11 +71,8 @@ public class SubMenu extends AppCompatActivity {
                         getFragmentManager().beginTransaction().replace(R.id.content ,new fragment_history()).commit();
                         return true;
                     case R.id.navigation_setting:
-                        mTextMessage.setText("settings");
+                        getFragmentManager().beginTransaction().replace(R.id.content ,new fragment_history()).commit();
                         return true;
-
-
-
                 }
                 return false;
             }

@@ -7,6 +7,49 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="qwerty.mobilebanking.Activity.SubMenu">
+    <Toolbar
+        android:id="@+id/appbar.menu.awal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2f4159"
+        android:paddingBottom="2dp"
+        app:layout_scrollFlags="scroll|enterAlways"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1.97">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="#2f4159"
+                android:clickable="true"
+                android:src="@drawable/back_icon"
+                android:contextClickable="true" />
+
+            <TextView
+                android:id="@+id/toolbar.title.main"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="0.01"
+                android:gravity="center"
+                android:text="Transaction"
+                android:textColor="#fff"
+                android:textSize="30dp" />
+            <Space
+                android:layout_width="48dp"
+                android:layout_height="48dp" />
+
+
+        </LinearLayout>
+    </Toolbar>
 
     <FrameLayout
         android:id="@+id/content"
@@ -21,7 +64,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="@color/donker"
+        android:background="#2f4159"
         app:menu="@menu/navigation" />
 
 </LinearLayout>

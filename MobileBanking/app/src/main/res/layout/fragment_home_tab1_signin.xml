@@ -6,48 +6,50 @@
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:background="#2f4159"
+    android:nestedScrollingEnabled="true"
     tools:context="qwerty.mobilebanking.Activity.LoginActivity$PlaceholderFragment"
     android:orientation="vertical">
+    <LinearLayout
+        android:nestedScrollingEnabled="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:background="#3f5169"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="25dp">
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/kodeakses"
+            android:layout_alignParentTop="true" />
 
-   <LinearLayout
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:paddingTop="5dp"
-       android:orientation="horizontal"
-       android:layout_gravity="center"
-       android:background="#3f5169"
-       android:layout_marginBottom="10dp"
-       android:layout_marginTop="25dp">
-       <ImageView
-           android:id="@+id/imageView"
-           android:layout_width="60dp"
-           android:layout_height="60dp"
-           android:layout_gravity="center"
-           app:srcCompat="@drawable/kodeakses"
-           android:layout_alignParentTop="true" />
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="#ccd8ef"
+            android:id="@+id/fragment.signin.textInputLayout.noRek">
 
-       <android.support.design.widget.TextInputLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:textColorHint="#ccd8ef"
-           android:id="@+id/fragment.signin.textInputLayout.noRek">
-
-           <EditText
-               android:id="@+id/editText"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_above="@+id/imageView2"
-               android:layout_alignStart="@+id/fragment.signin.editText.noRek"
-               android:backgroundTint="#3f5169"
-               android:ems="13"
-               android:hint="Nomor Rekening"
-               android:inputType="number"
-               android:textColor="#ffff"
-               android:textColorHint="#ccd8e8" />
-       </android.support.design.widget.TextInputLayout>
-   </LinearLayout>
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/imageView2"
+                android:layout_alignStart="@+id/fragment.signin.editText.noRek"
+                android:backgroundTint="#3f5169"
+                android:ems="13"
+                android:hint="Nomor Rekening"
+                android:inputType="number"
+                android:textColor="#ffff"
+                android:textColorHint="#ccd8e8" />
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
 
     <LinearLayout
+        android:nestedScrollingEnabled="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -104,6 +106,7 @@
         android:layout_alignParentStart="true"
         android:layout_gravity="center"
         />
+
 
 
 </LinearLayout>
