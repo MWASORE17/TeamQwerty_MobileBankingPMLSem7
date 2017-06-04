@@ -42,7 +42,6 @@ public class MenuAwalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), SubMenu.class);
-
                 v.getContext().startActivity(intent);
             }
         });

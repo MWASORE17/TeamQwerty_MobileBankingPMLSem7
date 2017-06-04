@@ -4,11 +4,29 @@ Anggota Kelompok:
 - Jeffrey Onggo (14.111.0221)
 - Rico (14.111.0264)
 
-
+---------------------------------------------PROGRESS-----------------------------------------------------
 Aplikasi yang disimulasikan : Mobile BCA (mobile banking)
 Fitur-fitur yang disimulasikan : 
-1. Cek Saldo --> User bisa mengecek sisa saldo yang ada di rekeningnya.
-2. Transfer --> User bisa melakukan transfer baik antar rekening maupun dengan rekening lain.
-3. Cek History Transaksi --> mengecek seluruh transaksi yang perna dilakukan sebelumnya.
-4. Authentication --> meliputi registrasi, memasukkan m-pin sebelum transaksi serta login.
-5. Account Settings --> Agar user dapat mengelola akunnya sendiri berupa mengubah m-pin, kode akses, pemblokiran kartu.
+1. Cek Saldo --> User bisa mengecek sisa saldo yang ada di rekeningnya. [done]
+2. Transfer --> User bisa melakukan transfer baik antar rekening maupun dengan rekening lain. [75%]
+3. Cek History Transaksi --> mengecek seluruh transaksi yang perna dilakukan sebelumnya. [50%]
+4. Authentication --> meliputi registrasi, memasukkan m-pin sebelum transaksi serta login. [75%]
+5. Account Settings --> Agar user dapat mengelola akunnya sendiri berupa mengubah m-pin, kode akses, pemblokiran kartu. [0%]
+
+-----------------------------------------------------------------------------------------------------------
+
+To Do:
+1. taruh M-Pin di register ( terdiri dari 6 digit integer)  --->  [auth]
+2. kalau dari home mau masuk ke sub_menu harus ada Window PopUp ( masukkan Kode akses )  --->  [auth]
+3. Setiap mau melakukan transfer, wajib memasukkan M-Pin (hanya transfer, berlaku ketika user melakukan klik pada button Transfer. Jika kode benar maka user bisa melakukan  --->  [auth]
+4. Pesan Transfer (max 32 Kata)
+
+Need To fix :
+1. Ketika Logout, Saldo kembali lagi dan history menghilang.  ---> [!General]
+2. Transfer antar rekening ----> [Transfer]
+3. History menghilang ketika berpindah fragment ---> [history]
+
+-----------------------------------------------------------------------------
+PERTIMBANGAN
+-----------------------------------------------------------------------------
+1. Taruh nama agar bisa terlihat transfer ke atas nama siapa

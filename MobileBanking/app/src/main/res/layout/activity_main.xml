@@ -28,19 +28,18 @@
 
                 <TextView
                     android:id="@+id/toolbar.title.main"
-                    android:layout_width="wrap_content"
+                    android:layout_width="30dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
                     android:layout_marginBottom="5dp"
+                    android:layout_weight="0.1"
                     android:gravity="center"
                     android:text="Menu"
                     android:textColor="#fff"
-                    android:textSize="30dp"
-                    android:layout_weight="4.50" />
+                    android:textSize="30dp" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right">
                 <ImageButton

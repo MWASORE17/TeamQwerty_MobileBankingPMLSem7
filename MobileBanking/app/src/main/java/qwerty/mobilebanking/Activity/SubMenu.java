@@ -11,7 +11,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import qwerty.mobilebanking.Animation.BottomNavigationHelper;
+import qwerty.mobilebanking.Fragment.Fragment_Home;
 import qwerty.mobilebanking.Fragment.Fragment_Transfer;
+import qwerty.mobilebanking.Fragment.fragment_CekSaldo;
+import qwerty.mobilebanking.Fragment.fragment_history;
 import qwerty.mobilebanking.R;
 
 public class SubMenu extends AppCompatActivity {
@@ -27,23 +31,38 @@ public class SubMenu extends AppCompatActivity {
         setContentView(R.layout.activity_sub_menu);
 
         bottomNavigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationHelper.disableShiftMode(bottomNavigation);
+        this.setTitle("Transaction");
+
         //inisialisasi fragment pertama
-        getFragmentManager().beginTransaction().replace(R.id.content ,new Fragment_Transfer()).commit();
 
         bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener()  {
+
+            public String title;
+
+            private void setTitle(String title) {
+                this.title = title;
+            }
 
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
                 switch (id) {
-                    case R.id.navigation_home:
-                       mTextMessage.setText(R.string.title_home);
-                    case R.id.navigation_dashboard:
-                        mTextMessage.setText(R.string.title_dashboard);
+                    case R.id.navigation_cek_saldo:
+                        getFragmentManager().beginTransaction().replace(R.id.content ,new fragment_CekSaldo()).commit();
                         return true;
-                    case R.id.navigation_notifications:
-                        mTextMessage.setText(R.string.title_notifications);
+                    case R.id.navigation_transfer:
+                        getFragmentManager().beginTransaction().replace(R.id.content ,new Fragment_Transfer()).commit();
                         return true;
+                    case R.id.navigation_history:
+                        getFragmentManager().beginTransaction().replace(R.id.content ,new fragment_history()).commit();
+                        return true;
+                    case R.id.navigation_setting:
+                        mTextMessage.setText("settings");
+                        return true;
+
+
+
                 }
                 return false;
             }

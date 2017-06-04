@@ -1,6 +1,7 @@
 package qwerty.mobilebanking.Activity;
 
 import android.media.MediaCodec;
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -18,6 +19,7 @@ import android.widget.Button;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import qwerty.mobilebanking.Animation.SlideUpTransformer;
 import qwerty.mobilebanking.Model.User;
 import qwerty.mobilebanking.R;
 import qwerty.mobilebanking.Model.SessionManager;
@@ -49,16 +51,19 @@ public class LoginActivity extends AppCompatActivity {
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
+
         mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setPageTransformer(false, new SlideUpTransformer());
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-       // TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-      //  tabLayout.setupWithViewPager(mViewPager);
+       TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+       tabLayout.setupWithViewPager(mViewPager);  //hubungkan viewpager dengan tab
         //endregion
 
     }
     private void inisialisasiUser(){
         User a = new User("1111111111111111","password",100001);
+        User Rico = new User("1234567890123456","password",10000000);
         User b = new User("1111111111111112","password",100002);
         User c = new User("1111111111111113","password",100003);
         User d = new User("1111111111111114","password",100004);
@@ -69,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
         User.users.add(c);
         User.users.add(d);
         User.users.add(e);
+        User.users.add(Rico);
     }
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
         public SectionsPagerAdapter(FragmentManager fm) {
@@ -95,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
             return 2;
         }
 
-        @Override
+        /*@Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
@@ -105,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
                 default:
                     return null;
             }
-        }
+        }*/
     }
 
     public static boolean isNoRekValid(String noRek){

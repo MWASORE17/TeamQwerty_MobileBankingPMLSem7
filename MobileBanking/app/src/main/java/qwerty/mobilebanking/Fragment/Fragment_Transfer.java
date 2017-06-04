@@ -1,8 +1,10 @@
 package qwerty.mobilebanking.Fragment;
 
 import android.app.Fragment;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -48,19 +50,21 @@ public class Fragment_Transfer extends Fragment {
 
 
     private void init(View view){
-        tv_saldo = (TextView)view.findViewById(R.id.fragment_transfer_textView_saldo);
-        tv_saldo.setText("Saldo Anda : Rp. " + User.loggedInUser.getSaldo());
+       /* tv_saldo = (TextView)view.findViewById(R.id.fragment_transfer_textView_saldo);
+        tv_saldo.setText("Saldo Anda : Rp. " + User.loggedInUser.getSaldo());*/
         til_noRekTujuan = (TextInputLayout)view.findViewById(R.id.fragment_transfer_textInputLayout_noRekTjuan);
         til_nominalTransfer = (TextInputLayout)view.findViewById(R.id.fragment_transfer_textInputLayout_nominalTransfer);
         et_noRekTujuan = (EditText)view.findViewById(R.id.fragment_transfer_editText_noRekTujuan);
         et_nominalTransfer = (EditText)view.findViewById(R.id.fragment_transfer_editText_nominalTransfer);
         btn_transfer = (Button)view.findViewById(R.id.fragment_transfer_button_transfer);
-        adapter = new HistoriTransaksiAdapter();
+
+       adapter = new HistoriTransaksiAdapter();
         rView = (RecyclerView)view.findViewById(R.id.fragment_transfer_recyclerView_historiTransaksi);
         rView.setHasFixedSize(true);
         rView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter.sethistoriTransaksi(historiTransaksiUserAktif);
         rView.setAdapter(adapter);
+
     }
 
 
