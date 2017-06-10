@@ -61,10 +61,9 @@ public class Fragment_Transfer extends Fragment {
        adapter = new HistoriTransaksiAdapter();
         rView = (RecyclerView)view.findViewById(R.id.fragment_transfer_recyclerView_historiTransaksi);
         rView.setHasFixedSize(true);
-        rView.setLayoutManager(new LinearLayoutManager(getContext()));
+        rView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter.sethistoriTransaksi(historiTransaksiUserAktif);
         rView.setAdapter(adapter);
-
     }
 
 
@@ -95,7 +94,7 @@ public class Fragment_Transfer extends Fragment {
                     User.loggedInUser.tambahListTransaksi(new HistoriTransaksi(User.loggedInUser.getNoRek(),et_noRekTujuan.getText().toString(),"Transfer ke "+et_noRekTujuan.getText(),Integer.parseInt(et_nominalTransfer.getText().toString()),new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date())));
                     adapter.swap(User.loggedInUser.getListTransaksi());
                     adapter.notifyDataSetChanged();
-                    tv_saldo.setText("Saldo Anda : Rp. "+User.loggedInUser.getSaldo());
+                    //tv_saldo.setText("Saldo Anda : Rp. "+User.loggedInUser.getSaldo());
                 }
             }
         });

@@ -4,16 +4,19 @@ package qwerty.mobilebanking.Fragment;
  * Created by Rico Wu on 19/03/2017.
  */
 import android.graphics.Typeface;
+import android.provider.ContactsContract;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import qwerty.mobilebanking.Activity.MainActivity;
@@ -28,6 +31,7 @@ public class Tab1_SignIn  extends Fragment{
     private EditText etKodeAkses;
     //private SessionManager session;
     private Typeface _typeFaceRL;
+    private ArrayList<User> listUser;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -76,6 +80,7 @@ public class Tab1_SignIn  extends Fragment{
                 if(_isvalid){
                     boolean _isregistered = false,_ismatch = false;
                     for(User user : User.users){
+                        Log.d("array",user.getNoRek());
                         if(Objects.equals(user.getNoRek(), etNoRekening.getText().toString())){
                             if(Objects.equals(user.getKodeAkses(), etKodeAkses.getText().toString())){
                                 _ismatch=true;

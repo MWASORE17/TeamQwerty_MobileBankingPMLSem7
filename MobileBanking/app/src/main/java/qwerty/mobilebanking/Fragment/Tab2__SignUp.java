@@ -32,6 +32,7 @@ public class Tab2__SignUp  extends Fragment {
     private Typeface _typeFaceRL;
     private ViewPager vPager;
     private Snackbar snackbar;
+    //private DatabaseHandler db;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -42,6 +43,7 @@ public class Tab2__SignUp  extends Fragment {
     }
     
     private void init(View view){
+        //db = new DatabaseHandler(getActivity());
         vPager = (ViewPager)getActivity().findViewById(R.id.container);
         _typeFaceRL = Typeface.createFromAsset(getActivity().getAssets(),"fonts/robotolight.ttf");
         btn_register = (Button) view.findViewById(R.id.register_button);
@@ -110,6 +112,7 @@ public class Tab2__SignUp  extends Fragment {
 
                 if(_isvalid){
                     User.users.add(new User(et_noRek.getText().toString(),et_kodeAkses.getText().toString(),0));
+                    //db.addUser(new User(et_noRek.getText().toString(),et_kodeAkses.getText().toString(),0));
                     et_noRek.setText("");
                     et_kodeAkses.setText("");
                     et_reKodeAkses.setText("");

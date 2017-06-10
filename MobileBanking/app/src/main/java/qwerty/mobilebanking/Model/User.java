@@ -11,13 +11,28 @@ import java.util.Objects;
 public class User {
 
     public User(){ } //Konstruktor Kosong
+
+
+
+    private int idUser;
     private String noRek;
     private String kodeAkses;
     private int saldo;
+
+
+
+
+    private String nama;
     private ArrayList<HistoriTransaksi> listTransaksi = new ArrayList<>();
 
     public static User loggedInUser;
     public static ArrayList<User> users = new ArrayList<>();
+    /*public User(int id,String noRek, String kodeAkses,int saldo){
+        setIdUser(id);
+        setNoRek(noRek);
+        setKodeAkses(kodeAkses);
+        setSaldo(saldo);
+    }*/
     public User(String noRek, String kodeAkses,int saldo){
         setNoRek(noRek);
         setKodeAkses(kodeAkses);
@@ -25,6 +40,12 @@ public class User {
     }
 
     //==================================SET==================================//
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
     public void setSaldo(int saldo){ this.saldo = saldo; }
     public void setNoRek(String noRek){
         this.noRek = noRek;
@@ -37,6 +58,12 @@ public class User {
     }
 
     //==================================GET==================================//
+    public int getIdUser() {
+        return idUser;
+    }
+    public String getNama() {
+        return nama;
+    }
     public int getSaldo(){
         return saldo;
     }
