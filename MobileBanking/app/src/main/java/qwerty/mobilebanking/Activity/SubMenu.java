@@ -27,6 +27,7 @@ public class SubMenu extends AppCompatActivity {
     private Fragment fragment;
     private FragmentManager fragmentManager;
     private ImageButton _imageButton;
+    private TextView test;
 
 
     @Override
@@ -37,15 +38,11 @@ public class SubMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub_menu);
 
-
-
         bottomNavigation = (BottomNavigationView) findViewById(R.id.navigation);
         BottomNavigationHelper.disableShiftMode(bottomNavigation);
 
-        this.setTitle("Transaction");
-
-
-
+        int posisi = getIntent().getExtras().getInt("posisi");
+        bottomNavigation.getMenu().getItem(0).setChecked(false);
 
         //inisialisasi fragment pertama
 
@@ -60,28 +57,46 @@ public class SubMenu extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
+                bottomNavigation.getMenu().getItem(0).setChecked(false);
+                bottomNavigation.getMenu().getItem(1).setChecked(false);
+                bottomNavigation.getMenu().getItem(2).setChecked(false);
+                bottomNavigation.getMenu().getItem(3).setChecked(false);
                 switch (id) {
                     case R.id.navigation_cek_saldo:
-                        getFragmentManager().beginTransaction().replace(R.id.content ,new fragment_CekSaldo()).commit();
+                        getFragmentManager().beginTransaction().replace(R.id.content ,new Fragment_Transfer()).commit();
+                        bottomNavigation.getMenu().getItem(0).setChecked(true);
                         return true;
                     case R.id.navigation_transfer:
-                        getFragmentManager().beginTransaction().replace(R.id.content ,new Fragment_Transfer()).commit();
+                        getFragmentManager().beginTransaction().replace(R.id.content ,new fragment_CekSaldo()).commit();
+                        bottomNavigation.getMenu().getItem(1).setChecked(true);
                         return true;
                     case R.id.navigation_history:
                         getFragmentManager().beginTransaction().replace(R.id.content ,new fragment_history()).commit();
+                        bottomNavigation.getMenu().getItem(2).setChecked(true);
                         return true;
                     case R.id.navigation_setting:
                         getFragmentManager().beginTransaction().replace(R.id.content ,new fragment_history()).commit();
+                        bottomNavigation.getMenu().getItem(3).setChecked(true);
                         return true;
                 }
                 return false;
             }
         });
-
-
+        if(posisi == 0) {
+            getFragmentManager().beginTransaction().replace(R.id.content, new Fragment_Transfer()).commit();
+            bottomNavigation.getMenu().getItem(posisi).setChecked(true);
+        }
+        else if(posisi ==1) {
+            getFragmentManager().beginTransaction().replace(R.id.content, new fragment_CekSaldo()).commit();
+            bottomNavigation.getMenu().getItem(posisi).setChecked(true);
+        }
+        else if(posisi ==2) {
+            getFragmentManager().beginTransaction().replace(R.id.content, new fragment_history()).commit();
+            bottomNavigation.getMenu().getItem(posisi).setChecked(true);
+        }
+        else if(posisi ==3) {
+            getFragmentManager().beginTransaction().replace(R.id.content, new fragment_history()).commit();
+            bottomNavigation.getMenu().getItem(posisi).setChecked(true);
+        }
     }
-
-
- }
-
-
+}

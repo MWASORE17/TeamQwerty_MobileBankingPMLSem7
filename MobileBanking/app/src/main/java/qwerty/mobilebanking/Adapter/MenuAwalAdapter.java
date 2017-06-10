@@ -34,6 +34,7 @@ public class MenuAwalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        final int posisi = position;
         final ItemMenuViewHolder _holder = (ItemMenuViewHolder) holder;
         final ItemObjek _itemMenu = this.itemMenu.get(position);
         _holder.namaMenu.setText(_itemMenu.getName());
@@ -42,6 +43,7 @@ public class MenuAwalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), SubMenu.class);
+                intent.putExtra("posisi",posisi);
                 v.getContext().startActivity(intent);
             }
         });

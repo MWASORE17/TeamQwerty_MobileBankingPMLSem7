@@ -57,6 +57,7 @@ public class Fragment_Transfer extends Fragment {
         et_noRekTujuan = (EditText)view.findViewById(R.id.fragment_transfer_editText_noRekTujuan);
         et_nominalTransfer = (EditText)view.findViewById(R.id.fragment_transfer_editText_nominalTransfer);
         btn_transfer = (Button)view.findViewById(R.id.fragment_transfer_button_transfer);
+        historiTransaksiUserAktif = User.loggedInUser.getListTransaksi();
 
        adapter = new HistoriTransaksiAdapter();
         rView = (RecyclerView)view.findViewById(R.id.fragment_transfer_recyclerView_historiTransaksi);

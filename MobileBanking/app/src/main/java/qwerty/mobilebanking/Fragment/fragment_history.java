@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import qwerty.mobilebanking.Adapter.HistoriTransaksiAdapter;
 import qwerty.mobilebanking.Model.HistoriTransaksi;
+import qwerty.mobilebanking.Model.User;
 import qwerty.mobilebanking.R;
 
 
@@ -28,7 +29,7 @@ public class fragment_history extends Fragment {
                              Bundle savedInstanceState) {
         View _view = inflater.inflate(R.layout.fragment_history,container,false);
 
-
+        historiTransaksiUserAktif = User.loggedInUser.getListTransaksi();
         adapter = new HistoriTransaksiAdapter();
         rView = (RecyclerView) _view.findViewById(R.id.fragment_transfer_recyclerView_historiTransaksi);
         rView.setHasFixedSize(true);
