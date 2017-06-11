@@ -17,6 +17,12 @@ public class User {
     private int idUser;
     private String noRek;
     private String kodeAkses;
+
+
+
+
+
+    private String pin;
     private int saldo;
     private String nama;
     private ArrayList<HistoriTransaksi> listTransaksi = new ArrayList<>();
@@ -29,10 +35,11 @@ public class User {
         setKodeAkses(kodeAkses);
         setSaldo(saldo);
     }*/
-    public User(String noRek, String kodeAkses,int saldo){
+    public User(String noRek, String kodeAkses,int saldo, String pin){
         setNoRek(noRek);
         setKodeAkses(kodeAkses);
         setSaldo(saldo);
+        setPin(pin);
     }
 
     //==================================SET==================================//
@@ -51,6 +58,9 @@ public class User {
     }
     public void setListTransaksi(ArrayList<HistoriTransaksi> listTransaksi) {
         this.listTransaksi = listTransaksi;
+    }
+    public void setPin(String pin) {
+        this.pin = pin;
     }
 
     //==================================GET==================================//
@@ -71,6 +81,9 @@ public class User {
     }
     public ArrayList<HistoriTransaksi> getListTransaksi() {
         return listTransaksi;
+    }
+    public String getPin() {
+        return pin;
     }
 
     //===============================Transaksi===============================//

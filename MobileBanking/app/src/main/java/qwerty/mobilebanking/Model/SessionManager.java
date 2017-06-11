@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import com.google.gson.Gson;
+
 import qwerty.mobilebanking.Activity.LoginActivity;
 import qwerty.mobilebanking.Activity.MainActivity;
 
@@ -19,8 +21,7 @@ public class SessionManager{
 
     private static final String FILE_PREF = "UserPref";
     private static final String LOGGED_IN = "IsLoggedIn";
-    private static final String KODE_AKSES = "KodeAkses";
-    private static final String NOMOR_REKENING = "NoRekening";
+    private static final String USER_DATA = "userdata";
     public SessionManager(Context context){
         this.context = context;
         this.sharePref = context.getSharedPreferences(FILE_PREF,0);
@@ -31,26 +32,33 @@ public class SessionManager{
         return new SessionManager(context);
     }
 
-    public void checkLogin(){
-        if(!sharePref.getBoolean("IsLoggedIn", false)){
-            Intent intent = new Intent(context,LoginActivity.class);
+    public /*void*/ boolean checkLogin(){
+        if(!sharePref.getBoolean(LOGGED_IN, false)){
+            /*Intent intent = new Intent(context,LoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            context.startActivity(intent);
+            context.startActivity(intent);*/
+            return false;
+        }
+        else {
+            return true;
         }
     }
-    public void loginUser(String noRekening,String kodeAkses){
+    public void loginUser(User user){
         editor.putBoolean(LOGGED_IN,true);
-        editor.putString(NOMOR_REKENING,noRekening);
-        editor.putString(KODE_AKSES,kodeAkses);
+        editor.putString(USER_DATA,new Gson().toJson(user));
         editor.commit();
         Intent intent = new Intent(context, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);
     }
-    public String getLoggedIn(){
-        return sharePref.getString(NOMOR_REKENING,null);
+    public User getUser(){
+        return new Gson().fromJson(sharePref.getString(USER_DATA, ""),User.class);
+    }
+    public void updateUser(User user){
+        editor.putString(USER_DATA,new Gson().toJson(user));
+        editor.commit();
     }
     public void logOut(){
         editor.clear();

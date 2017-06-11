@@ -29,14 +29,15 @@ public class Tab1_SignIn  extends Fragment{
     private TextInputLayout til_noRek, til_kodeAkses;
     private EditText etNoRekening;
     private EditText etKodeAkses;
-    //private SessionManager session;
+    private SessionManager session;
     private Typeface _typeFaceRL;
     private ArrayList<User> listUser;
+    private User userLogin;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home_tab1_signin, container, false);
-        //session = new SessionManager(getActivity());
+        session = new SessionManager(getActivity());
 
         loginButton = (Button)rootView.findViewById(R.id.buttonLogin);
         _typeFaceRL = Typeface.createFromAsset(getActivity().getAssets(), "fonts/robotolight.ttf");
@@ -62,10 +63,10 @@ public class Tab1_SignIn  extends Fragment{
                     til_noRek.setErrorEnabled(true);
                     til_noRek.setError("Nomor Rekening Tidak Boleh Kosong");
                 }
-                else if(etNoRekening.getText().toString().length()!=16){
+                else if(etNoRekening.getText().toString().length()!=11){
                     _isvalid=false;
                     til_noRek.setErrorEnabled(true);
-                    til_noRek.setError("Nomor Rekening Terdiri Dari 16 Digit Angka");
+                    til_noRek.setError("Nomor Rekening Terdiri Dari 11 Digit Angka");
                 }
                 else if(TextUtils.isEmpty(etKodeAkses.getText().toString())){
                     _isvalid=false;
@@ -84,7 +85,7 @@ public class Tab1_SignIn  extends Fragment{
                         if(Objects.equals(user.getNoRek(), etNoRekening.getText().toString())){
                             if(Objects.equals(user.getKodeAkses(), etKodeAkses.getText().toString())){
                                 _ismatch=true;
-                                User.loggedInUser = user;
+                                userLogin = user;
                             }
                             _isregistered = true;
                             break;
@@ -100,8 +101,7 @@ public class Tab1_SignIn  extends Fragment{
                         til_kodeAkses.setError("Kode Akses Salah");
                     }
                     if(_isregistered && _ismatch){
-                        SessionManager.with(getActivity()).loginUser(User.loggedInUser.getNoRek(),User.loggedInUser.getKodeAkses());
-
+                        session.loginUser(userLogin);
                     }
                 }
             }

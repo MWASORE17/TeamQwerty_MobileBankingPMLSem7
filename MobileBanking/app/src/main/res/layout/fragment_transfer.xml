@@ -26,6 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nomor Rekening Tujuan"
+                android:textColorHint="#000000"
                 android:inputType="number"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -34,6 +35,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/fragment.transfer.textInputLayout.nominalTransfer">
             <EditText
+                android:textColorHint="#000000"
                 android:id="@+id/fragment.transfer.editText.nominalTransfer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

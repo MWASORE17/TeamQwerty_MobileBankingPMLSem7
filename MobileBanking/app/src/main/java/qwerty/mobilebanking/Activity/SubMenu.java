@@ -21,10 +21,11 @@ import qwerty.mobilebanking.Animation.BottomNavigationHelper;
 import qwerty.mobilebanking.Fragment.Fragment_Home;
 import qwerty.mobilebanking.Fragment.Fragment_Transfer;
 import qwerty.mobilebanking.Fragment.fragment_CekSaldo;
+import qwerty.mobilebanking.Fragment.fragment_Setting;
 import qwerty.mobilebanking.Fragment.fragment_history;
 import qwerty.mobilebanking.R;
 
-public class SubMenu extends AppCompatActivity {
+public class SubMenu extends AppCompatActivity{
     private BottomNavigationView bottomNavigation;
     private Fragment fragment;
     private FragmentManager fragmentManager;
@@ -82,7 +83,7 @@ public class SubMenu extends AppCompatActivity {
                         bottomNavigation.getMenu().getItem(2).setChecked(true);
                         return true;
                     case R.id.navigation_setting:
-                        getFragmentManager().beginTransaction().replace(R.id.content ,new fragment_history()).commit();
+                        getFragmentManager().beginTransaction().replace(R.id.content ,new fragment_Setting()).commit();
                         bottomNavigation.getMenu().getItem(3).setChecked(true);
                         return true;
                 }
@@ -102,7 +103,7 @@ public class SubMenu extends AppCompatActivity {
             bottomNavigation.getMenu().getItem(posisi).setChecked(true);
         }
         else if(posisi ==3) {
-            getFragmentManager().beginTransaction().replace(R.id.content, new fragment_history()).commit();
+            getFragmentManager().beginTransaction().replace(R.id.content, new fragment_Setting()).commit();
             bottomNavigation.getMenu().getItem(posisi).setChecked(true);
         }
     }

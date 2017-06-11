@@ -72,10 +72,10 @@ public class Tab2__SignUp  extends Fragment {
                     til_noRek.setErrorEnabled(true);
                     til_noRek.setError("Nomor Rekening Tidak Boleh Kosong");
                 }
-                else if(et_noRek.getText().toString().length()!=16){
+                else if(et_noRek.getText().toString().length()!=11){
                     _isvalid=false;
                     til_noRek.setErrorEnabled(true);
-                    til_noRek.setError("Nomor Rekening Harus Berisi 16 Digit angka");
+                    til_noRek.setError("Nomor Rekening Harus Berisi 11 Digit angka");
                 }
                 else if(isRegisteredAlready(et_noRek.getText().toString())){
                     _isvalid=false;
@@ -111,7 +111,7 @@ public class Tab2__SignUp  extends Fragment {
                 }
 
                 if(_isvalid){
-                    User.users.add(new User(et_noRek.getText().toString(),et_kodeAkses.getText().toString(),0));
+                    User.users.add(new User(et_noRek.getText().toString(),et_kodeAkses.getText().toString(),0,"123456"));
                     //db.addUser(new User(et_noRek.getText().toString(),et_kodeAkses.getText().toString(),0));
                     et_noRek.setText("");
                     et_kodeAkses.setText("");
