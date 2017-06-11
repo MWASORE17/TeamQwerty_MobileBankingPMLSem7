@@ -2,6 +2,8 @@ package qwerty.mobilebanking.Fragment;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.icu.text.DecimalFormat;
+import android.icu.text.NumberFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -31,11 +33,19 @@ public class fragment_CekSaldo extends Fragment {
         View _view = inflater.inflate(R.layout.fragment_cek_saldo,container,false);
 
 
-        _typeFace = Typeface.createFromAsset(getActivity().getAssets(), "fonts/robotolight.ttf");
+        _typeFace = Typeface.createFromAsset(getActivity().getAssets(), "fonts/card_font.ttf");
         // Inflate the layout for this fragment
+
         tv_saldo = (TextView)_view.findViewById(R.id.fragment_transfer_textView_saldo);
-        tv_saldo.setText("Rp. " + User.loggedInUser.getSaldo());
+
         tv_saldo.setTypeface(_typeFace);
+        //merah karena minimal API kami 21 sedangkan yang dibutuhkanitu 24
+        NumberFormat nf= NumberFormat.getInstance();
+        DecimalFormat df=(DecimalFormat)nf;
+        df.applyPattern("#,###.00");
+        tv_saldo.setText("IDR  " + df.format(User.loggedInUser.getSaldo()) );
+
+
         return _view;
     }
 

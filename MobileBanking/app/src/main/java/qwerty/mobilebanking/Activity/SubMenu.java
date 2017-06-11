@@ -1,6 +1,7 @@
 package qwerty.mobilebanking.Activity;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -8,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -28,6 +30,7 @@ public class SubMenu extends AppCompatActivity {
     private FragmentManager fragmentManager;
     private ImageButton _imageButton;
     private TextView test;
+    private Toolbar toolbar;
 
 
     @Override
@@ -38,10 +41,13 @@ public class SubMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub_menu);
 
+
         bottomNavigation = (BottomNavigationView) findViewById(R.id.navigation);
         BottomNavigationHelper.disableShiftMode(bottomNavigation);
-
         int posisi = getIntent().getExtras().getInt("posisi");
+
+
+
         bottomNavigation.getMenu().getItem(0).setChecked(false);
 
         //inisialisasi fragment pertama
@@ -61,13 +67,14 @@ public class SubMenu extends AppCompatActivity {
                 bottomNavigation.getMenu().getItem(1).setChecked(false);
                 bottomNavigation.getMenu().getItem(2).setChecked(false);
                 bottomNavigation.getMenu().getItem(3).setChecked(false);
+
                 switch (id) {
                     case R.id.navigation_cek_saldo:
-                        getFragmentManager().beginTransaction().replace(R.id.content ,new Fragment_Transfer()).commit();
+                        getFragmentManager().beginTransaction().replace(R.id.content ,new fragment_CekSaldo() ).commit();
                         bottomNavigation.getMenu().getItem(0).setChecked(true);
                         return true;
                     case R.id.navigation_transfer:
-                        getFragmentManager().beginTransaction().replace(R.id.content ,new fragment_CekSaldo()).commit();
+                        getFragmentManager().beginTransaction().replace(R.id.content ,new Fragment_Transfer() ).commit();
                         bottomNavigation.getMenu().getItem(1).setChecked(true);
                         return true;
                     case R.id.navigation_history:
@@ -83,11 +90,11 @@ public class SubMenu extends AppCompatActivity {
             }
         });
         if(posisi == 0) {
-            getFragmentManager().beginTransaction().replace(R.id.content, new Fragment_Transfer()).commit();
+            getFragmentManager().beginTransaction().replace(R.id.content, new fragment_CekSaldo()).commit();
             bottomNavigation.getMenu().getItem(posisi).setChecked(true);
         }
         else if(posisi ==1) {
-            getFragmentManager().beginTransaction().replace(R.id.content, new fragment_CekSaldo()).commit();
+            getFragmentManager().beginTransaction().replace(R.id.content, new Fragment_Transfer()).commit();
             bottomNavigation.getMenu().getItem(posisi).setChecked(true);
         }
         else if(posisi ==2) {

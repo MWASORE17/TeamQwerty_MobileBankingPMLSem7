@@ -63,8 +63,8 @@ public class MainActivity extends Activity {
         ItemObjek historiTransaksi = new ItemObjek("Histori Transaksi",R.drawable.historitransaksi);
         ItemObjek pengaturanAkun = new ItemObjek("Pengaturan Akun",R.drawable.pengaturanakun);
         ItemObjek.itemMenu.clear();
-        ItemObjek.itemMenu.add(transaksi);
         ItemObjek.itemMenu.add(cekSaldo);
+        ItemObjek.itemMenu.add(transaksi);
         ItemObjek.itemMenu.add(historiTransaksi);
         ItemObjek.itemMenu.add(pengaturanAkun);
     }

@@ -1,5 +1,7 @@
 package qwerty.mobilebanking.Fragment;
 
+import android.icu.text.DecimalFormat;
+import android.icu.text.NumberFormat;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.app.Fragment;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 
 import qwerty.mobilebanking.Adapter.HistoriTransaksiAdapter;
@@ -19,7 +23,6 @@ public class fragment_history extends Fragment {
     private RecyclerView rView;
     private HistoriTransaksiAdapter adapter;
     private ArrayList<HistoriTransaksi> historiTransaksiUserAktif = new ArrayList<>();
-
 
     public fragment_history() {
     }

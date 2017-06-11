@@ -18,10 +18,6 @@ public class User {
     private String noRek;
     private String kodeAkses;
     private int saldo;
-
-
-
-
     private String nama;
     private ArrayList<HistoriTransaksi> listTransaksi = new ArrayList<>();
 
