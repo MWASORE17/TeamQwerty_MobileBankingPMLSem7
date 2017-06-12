@@ -10,10 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -31,6 +34,7 @@ import qwerty.mobilebanking.R;
  */
 
 public class fragment_Setting extends Fragment implements View.OnClickListener {
+    private LinearLayout pinKeyboardLayout;
     private TextView judulDialog;
     private String pin, pinBaru, rePinBaru;
     private int state;
@@ -134,6 +138,7 @@ public class fragment_Setting extends Fragment implements View.OnClickListener {
         dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         dialog.setContentView(R.layout.fragment_pin_view);
         dialog.show();
+        pinKeyboardLayout = (LinearLayout)dialog.findViewById(R.id.dialog_pin_layoutKeyboard);
         judulDialog = (TextView)dialog.findViewById(R.id.dialog_pin_textView_judul);
         bt_pin0 = (Button)dialog.findViewById(R.id.dialog_pin_button0);
         bt_pin0.setOnClickListener(this);
@@ -352,6 +357,13 @@ public class fragment_Setting extends Fragment implements View.OnClickListener {
                 refreshLingkar(pin.length());
                 judulDialog.setText("Masukkan Pin Baru");
             }
+            else {
+                Animation shake;
+                shake = AnimationUtils.loadAnimation(getActivity(),R.anim.shake);
+                pinKeyboardLayout.startAnimation(shake);
+                pin = "";
+                refreshLingkar(pin.length());
+            }
         }
     }
     private void cekPinFull2(){
@@ -369,6 +381,13 @@ public class fragment_Setting extends Fragment implements View.OnClickListener {
                 User.loggedInUser.setPin(pinBaru);
                 SessionManager.with(getActivity()).updateUser(User.loggedInUser);
                 dialog.dismiss();
+            }
+            else {
+                Animation shake;
+                shake = AnimationUtils.loadAnimation(getActivity(),R.anim.shake);
+                pinKeyboardLayout.startAnimation(shake);
+                pin = "";
+                refreshLingkar(pin.length());
             }
         }
     }

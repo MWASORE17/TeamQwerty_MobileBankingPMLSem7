@@ -13,10 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -49,6 +52,7 @@ public class Fragment_Transfer extends Fragment implements View.OnClickListener 
     private Button bt_pin0,bt_pin1,bt_pin2,bt_pin3,bt_pin4,bt_pin5,bt_pin6,bt_pin7,bt_pin8,bt_pin9,bt_pinCancel;
     private ImageView iv_pin1,iv_pin2,iv_pin3,iv_pin4,iv_pin5,iv_pin6;
     private ImageButton bt_pinBackSpace;
+    private LinearLayout pinKeyboardLayout;
     private String pin;
     private ArrayList<ImageView> listLingkar;
     private Dialog dialog;
@@ -119,6 +123,7 @@ public class Fragment_Transfer extends Fragment implements View.OnClickListener 
         dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         dialog.setContentView(R.layout.fragment_pin_view);
         dialog.show();
+        pinKeyboardLayout = (LinearLayout)dialog.findViewById(R.id.dialog_pin_layoutKeyboard);
         bt_pin0 = (Button)dialog.findViewById(R.id.dialog_pin_button0);
         bt_pin0.setOnClickListener(this);
         bt_pin1 = (Button)dialog.findViewById(R.id.dialog_pin_button1);
@@ -254,6 +259,13 @@ public class Fragment_Transfer extends Fragment implements View.OnClickListener 
                 adapter.swap(User.loggedInUser.getListTransaksi());
                 adapter.notifyDataSetChanged();
                 dialog.dismiss();
+            }
+            else {
+                Animation shake;
+                shake = AnimationUtils.loadAnimation(getActivity(),R.anim.shake);
+                pinKeyboardLayout.startAnimation(shake);
+                pin = "";
+                refreshLingkar(pin.length());
             }
         }
     }
