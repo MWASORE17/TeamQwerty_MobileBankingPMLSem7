@@ -231,9 +231,14 @@ public class Fragment_Transfer extends Fragment implements View.OnClickListener 
                 }
                 break;
             case R.id.dialog_pin_ImagebuttonBackSpace:
-                pin = pin.substring(0,pin.length()-1);
-                refreshLingkar(pin.length());
+                if(pin.length()>0)
+                {
+                    pin = pin.substring(0,pin.length()-1);
+                    refreshLingkar(pin.length());
+                }
                 break;
+
+
             case R.id.dialog_pin_buttonCancel:
                 dialog.dismiss();
         }

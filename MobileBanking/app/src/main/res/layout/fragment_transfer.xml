@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+        >
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
@@ -15,46 +16,75 @@
             android:id="@+id/fragment.transfer.textView.saldo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Saldo"
+            android:text="Transfer"
             android:textSize="20sp"/>
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/fragment.transfer.textInputLayout.noRekTjuan">
-            <EditText
-                android:id="@+id/fragment.transfer.editText.noRekTujuan"
-                android:layout_width="match_parent"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Nomor Rekening Tujuan"
-                android:textColorHint="#000000"
-                android:inputType="number"/>
-        </android.support.design.widget.TextInputLayout>
+                android:src="@drawable/ic_carddestination"
+                android:layout_gravity="bottom"
+                android:paddingBottom="6dp"
+                android:layout_marginRight="6dp"/>
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/fragment.transfer.textInputLayout.nominalTransfer">
-            <EditText
-                android:textColorHint="#000000"
-                android:id="@+id/fragment.transfer.editText.nominalTransfer"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nominal"
-                android:inputType="number"/>
-        </android.support.design.widget.TextInputLayout>
+                android:id="@+id/fragment.transfer.textInputLayout.noRekTjuan">
+                <EditText
+                    android:id="@+id/fragment.transfer.editText.noRekTujuan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nomor Rekening Tujuan"
+                    android:textColorHint="#000000"
+                    android:inputType="number"/>
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_money"
+                android:layout_gravity="bottom"
+                android:paddingBottom="6dp"
+                android:layout_marginRight="6dp"/>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/fragment.transfer.textInputLayout.nominalTransfer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <EditText
+                    android:id="@+id/fragment.transfer.editText.nominalTransfer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="#000000"
+                    android:hint="Nominal"
+                    android:inputType="number"/>
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="T r a n s f e r"
+            android:background="#009688"
+            android:textColor="#ffff"
+
+            android:foreground="?android:attr/selectableItemBackground"
             android:id="@+id/fragment.transfer.button.transfer"/>
-
-
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/fragment.transfer.recyclerView.historiTransaksi"
         android:layout_width="match_parent"
-        android:layout_height="224dp"
+        android:layout_height="0dp"
         android:layout_margin="10dp">
 
     </android.support.v7.widget.RecyclerView>

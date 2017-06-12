@@ -1,6 +1,7 @@
 package qwerty.mobilebanking.Activity;
 
 
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -41,14 +42,12 @@ public class SubMenu extends AppCompatActivity{
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub_menu);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 
         bottomNavigation = (BottomNavigationView) findViewById(R.id.navigation);
         BottomNavigationHelper.disableShiftMode(bottomNavigation);
         int posisi = getIntent().getExtras().getInt("posisi");
-
-
-
         bottomNavigation.getMenu().getItem(0).setChecked(false);
 
         //inisialisasi fragment pertama
@@ -73,6 +72,7 @@ public class SubMenu extends AppCompatActivity{
                     case R.id.navigation_cek_saldo:
                         getFragmentManager().beginTransaction().replace(R.id.content ,new fragment_CekSaldo() ).commit();
                         bottomNavigation.getMenu().getItem(0).setChecked(true);
+
                         return true;
                     case R.id.navigation_transfer:
                         getFragmentManager().beginTransaction().replace(R.id.content ,new Fragment_Transfer() ).commit();

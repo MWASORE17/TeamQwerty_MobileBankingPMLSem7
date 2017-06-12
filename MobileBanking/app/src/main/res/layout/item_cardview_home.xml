@@ -19,7 +19,7 @@
         android:id="@+id/layout.home.cardview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/cardview1"
+        android:background="#f1321f"
         android:orientation="vertical"
         android:paddingBottom="6dp"
         android:paddingRight="10dp">

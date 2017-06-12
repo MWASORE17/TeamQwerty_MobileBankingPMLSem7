@@ -1,5 +1,6 @@
 package qwerty.mobilebanking.Activity;
 
+import android.content.pm.ActivityInfo;
 import android.media.MediaCodec;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -44,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setVisibility(View.GONE);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.

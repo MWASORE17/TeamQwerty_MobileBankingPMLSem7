@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -43,6 +44,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         init();
         CheckLogin();
         event();
@@ -125,12 +127,12 @@ public class MainActivity extends Activity {
         }
     }
     private void inisialisasiUser(){
-        User a = new User("11111111111","password",100001,"123456");
-        User Rico = new User("1234567890123456","password",10000000,"123456");
-        User b = new User("11111111111","password",100002,"123456");
-        User c = new User("11111111111","password",100003,"123456");
-        User d = new User("11111111111","password",100004,"123456");
-        User e = new User("11111111111","password",100005,"123456");
+        User a = new User("11111111111","password",100001,"123456" ,"Shendy Lim");
+        User Rico = new User("12345678901","password",10000000,"526253", "Rico Wu");
+        User b = new User("11111111112","password",100002,"123456","Sasa Marisa");
+        User c = new User("11111111113","password",100003,"123456","Mantan Terindah");
+        User d = new User("11111111114","password",100004,"123456","Fera");
+        User e = new User("11111111115","password",100005,"123456","Jessica Wijaya");
         User.users.clear();
         User.users.add(a);
         User.users.add(b);

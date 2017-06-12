@@ -1,44 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/dialog.kodeakses"
     android:orientation="vertical"
     android:layout_width="300dp"
     android:layout_height="wrap_content"
-    android:background="#2f4159"
-    android:padding="15dp">
-    <TextView
+    android:background="#2f4159">
+
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ganti Kode Akses"
-        android:textColor="#ffffff"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:background="@drawable/garisbawah_putih"
-        android:paddingBottom="10dp"
-        />
+        android:backgroundTint="#2f4159"
+        app:cardCornerRadius="5dp"
+        android:elevation="5dp">
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:paddingBottom="10dp"
+            android:text="Ganti Kode Akses"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </android.support.v7.widget.CardView>
+
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textColorHint="#ffffff"
+        android:background="#3f5169"
+        android:textColorHint="#ccd8e8"
+        android:padding="5dp"
+        app:hintEnabled="false"
         android:id="@+id/dialog.gantiKodeAkses.textInputLayout.kodeAkses">
         <EditText
+            android:id="@+id/dialog.gantiKodeAkses.editText.kodeAkses"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Input Kode Akses"
-            android:id="@+id/dialog.gantiKodeAkses.editText.kodeAkses"
             android:inputType="textPassword"
-            android:textColor="#ffffff"
-            android:backgroundTint="#3f5169"/>
+            android:backgroundTint="#3f5169"
+            android:textColorHint="#ccd8e8"/>
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:textColorHint="#ffffff"
+        android:background="#3f5169"
+        android:textColorHint="#ccd8e8"
         android:id="@+id/dialog.gantiKodeAkses.textInputLayout.kodeAksesBaru">
         <EditText
             android:layout_width="match_parent"
@@ -53,7 +64,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:textColorHint="#ffffff"
+        android:background="#3f5169"
+        android:textColorHint="#ccd8e8"
         android:id="@+id/dialog.gantiKodeAkses.textInputLayout.rekodeAksesBaru">
         <EditText
             android:layout_width="match_parent"
@@ -69,11 +81,15 @@
         android:layout_height="match_parent"
         android:gravity="center">
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Submit"
-            android:id="@+id/dialog.gantiKodeAkses.button.submit"/>
+            android:id="@+id/dialog.gantiKodeAkses.button.submit"
+            android:onClick="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:textColor="#fff"
+            android:background="#009688"/>
     </LinearLayout>
 
 </LinearLayout>

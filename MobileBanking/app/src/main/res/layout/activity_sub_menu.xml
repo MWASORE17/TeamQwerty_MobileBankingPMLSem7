@@ -21,21 +21,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:orientation="horizontal"
-            android:layout_marginRight="15dp"
-            android:layout_weight="1.97">
-
-            <ImageButton
-                android:id="@+id/btnBack"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="#2f4159"
-                android:clickable="true"
-                android:src="@drawable/back_icon"
-                android:contextClickable="true" />
+            android:layout_marginRight="15dp">
 
             <TextView
                 android:id="@+id/toolbar.title.main"
-                android:layout_width="30dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:layout_weight="0.01"
@@ -43,9 +33,6 @@
                 android:text="Transaction"
                 android:textColor="#fff"
                 android:textSize="30dp" />
-            <Space
-                android:layout_width="48dp"
-                android:layout_height="48dp" />
 
 
         </LinearLayout>
@@ -56,12 +43,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.01"
-        tools:background="#EFEFEF"
         >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/test"/>
+
     </FrameLayout>
 
     <android.support.design.widget.BottomNavigationView

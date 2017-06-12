@@ -77,11 +77,15 @@
                     android:gravity="center"
                     android:src="@drawable/icon_name_tag"/>
                 <TextView
+                    android:id="@+id/cek_saldo_nama"
                     android:layout_marginLeft="5dp"
                     android:text="Your Name"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:gravity="center|left"/>
+                    android:gravity="center|left"
+                    android:textSize="18dp"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="bold"/>
             </LinearLayout>
 
             <LinearLayout
@@ -94,6 +98,7 @@
                     android:gravity="center"
                     android:src="@drawable/icon_number_card"/>
                 <TextView
+                    android:id="@+id/cek_saldo_norek"
                     android:layout_marginLeft="5dp"
                     android:text="Your Account Number"
                     android:layout_width="match_parent"

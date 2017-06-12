@@ -1,5 +1,6 @@
 package qwerty.mobilebanking.Fragment;
 
+import android.graphics.Typeface;
 import android.icu.text.DecimalFormat;
 import android.icu.text.NumberFormat;
 import android.os.Bundle;

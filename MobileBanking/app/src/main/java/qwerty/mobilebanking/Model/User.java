@@ -26,15 +26,16 @@ public class User {
     private int saldo;
     private String nama;
     private ArrayList<HistoriTransaksi> listTransaksi = new ArrayList<>();
-
     public static User loggedInUser;
     public static ArrayList<User> users = new ArrayList<>();
-    /*public User(int id,String noRek, String kodeAkses,int saldo){
-        setIdUser(id);
+
+    public User(String noRek, String kodeAkses,int saldo, String pin, String nama){
         setNoRek(noRek);
         setKodeAkses(kodeAkses);
         setSaldo(saldo);
-    }*/
+        setNama(nama);
+        setPin(pin);
+    }
     public User(String noRek, String kodeAkses,int saldo, String pin){
         setNoRek(noRek);
         setKodeAkses(kodeAkses);

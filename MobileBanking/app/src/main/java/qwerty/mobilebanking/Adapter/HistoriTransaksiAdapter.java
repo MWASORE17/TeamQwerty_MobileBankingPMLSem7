@@ -1,6 +1,9 @@
 package qwerty.mobilebanking.Adapter;
 
+import android.content.Context;
+import android.graphics.Typeface;
 import android.icu.text.DecimalFormat;
+import android.icu.text.DisplayContext;
 import android.icu.text.NumberFormat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,6 +23,7 @@ import qwerty.mobilebanking.R;
 public class HistoriTransaksiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private ArrayList<HistoriTransaksi> historiTransaksi;
+
     public ArrayList<HistoriTransaksi> gethistoriTransaksi() {
         return historiTransaksi;
     }
@@ -41,12 +45,11 @@ public class HistoriTransaksiAdapter extends RecyclerView.Adapter<RecyclerView.V
         final itemHistoriTransaksiViewHolder _holder = (itemHistoriTransaksiViewHolder) holder;
         final HistoriTransaksi _historiTransaksi = this.historiTransaksi.get(position);
         _holder.tanggal.setText(_historiTransaksi.getTanggalTransaksi());
-
         NumberFormat nf= NumberFormat.getInstance();
         DecimalFormat df=(DecimalFormat)nf;
         df.applyPattern("#,###.00");
-
-        _holder.nominal.setText("Rp. "+df.format(_historiTransaksi.getJumlahTransaksi()));
+        _holder.deskripsi.setText(_historiTransaksi.getJenisTransaksi());
+        _holder.nominal.setText("IDR. "+ df.format(_historiTransaksi.getJumlahTransaksi()));
     }
 
     @Override
