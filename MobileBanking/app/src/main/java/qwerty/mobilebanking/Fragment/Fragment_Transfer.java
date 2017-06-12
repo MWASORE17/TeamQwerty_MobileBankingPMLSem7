@@ -26,6 +26,7 @@ import java.util.Objects;
 
 import qwerty.mobilebanking.Adapter.HistoriTransaksiAdapter;
 import qwerty.mobilebanking.Model.HistoriTransaksi;
+import qwerty.mobilebanking.Model.SessionManager;
 import qwerty.mobilebanking.Model.User;
 import qwerty.mobilebanking.R;
 
@@ -247,8 +248,9 @@ public class Fragment_Transfer extends Fragment implements View.OnClickListener 
         if(pin.length()==6){
             if(Objects.equals(pin, User.loggedInUser.getPin())){
                 transfer(User.loggedInUser,Integer.parseInt(et_nominalTransfer.getText().toString()));
-                User.updateUser(User.loggedInUser);
                 User.loggedInUser.tambahListTransaksi(new HistoriTransaksi(User.loggedInUser.getNoRek(),et_noRekTujuan.getText().toString(),"Transfer ke "+et_noRekTujuan.getText(),Integer.parseInt(et_nominalTransfer.getText().toString()),new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date())));
+                User.updateUser(User.loggedInUser);
+                SessionManager.with(getActivity()).updateUser(User.loggedInUser);
                 adapter.swap(User.loggedInUser.getListTransaksi());
                 adapter.notifyDataSetChanged();
                 dialog.dismiss();
@@ -257,7 +259,7 @@ public class Fragment_Transfer extends Fragment implements View.OnClickListener 
     }
     private void refreshLingkar(int panjangPin){
         for(ImageView imageView : listLingkar ){
-            if(listLingkar.indexOf(imageView)<=pin.length()-1){
+            if(listLingkar.indexOf(imageView)<=panjangPin-1){
                 imageView.setImageResource(R.drawable.lingkar_pin_full);
             }
             else {
@@ -268,7 +270,4 @@ public class Fragment_Transfer extends Fragment implements View.OnClickListener 
     private void transfer(User pengirim,int nominal){
         pengirim.kurangSaldo(nominal);
     }
-
-
-
 }
