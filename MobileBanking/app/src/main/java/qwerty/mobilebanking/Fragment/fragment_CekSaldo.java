@@ -55,9 +55,4 @@ public class fragment_CekSaldo extends Fragment {
         tv_saldo.setText("IDR  " + df.format(User.loggedInUser.getSaldo()) );
         return _view;
     }
-
-
-
-
-
 }

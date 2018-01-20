@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="qwerty.mobilebanking.Activity.SubMenu">
+    tools:context="qwerty.mobilebanking.Activity.SubMenu"
+    android:background="@drawable/simplecity2">
     <Toolbar
         android:id="@+id/appbar.menu.awal"
         android:layout_width="match_parent"

@@ -11,10 +11,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import okhttp3.ResponseBody;
+import qwerty.mobilebanking.API.ApiModel;
 import qwerty.mobilebanking.Model.HistoriTransaksi;
+import qwerty.mobilebanking.Model.User;
 import qwerty.mobilebanking.R;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by 10 on 5/28/2017.
@@ -23,7 +38,8 @@ import qwerty.mobilebanking.R;
 public class HistoriTransaksiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private ArrayList<HistoriTransaksi> historiTransaksi;
-
+    private ApiModel mApiService;
+    private ArrayList<HistoriTransaksi> histori;
     public ArrayList<HistoriTransaksi> gethistoriTransaksi() {
         return historiTransaksi;
     }
@@ -48,7 +64,7 @@ public class HistoriTransaksiAdapter extends RecyclerView.Adapter<RecyclerView.V
         NumberFormat nf= NumberFormat.getInstance();
         DecimalFormat df=(DecimalFormat)nf;
         df.applyPattern("#,###.00");
-        _holder.deskripsi.setText(_historiTransaksi.getJenisTransaksi());
+        _holder.deskripsi.setText(deskripsi(_historiTransaksi));
         _holder.nominal.setText("IDR. "+ df.format(_historiTransaksi.getJumlahTransaksi()));
     }
 
@@ -68,5 +84,13 @@ public class HistoriTransaksiAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
     public void swap(ArrayList list){
         historiTransaksi = list;
+    }
+    public String deskripsi(HistoriTransaksi hTransaksi){
+        if(Objects.equals(hTransaksi.getPengirim(), User.loggedInUser.getNoRek())){
+            return "Transfer ke - "+hTransaksi.getPenerima();
+        }
+        else {
+            return "Terima dari - "+hTransaksi.getPengirim();
+        }
     }
 }

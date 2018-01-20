@@ -3,8 +3,9 @@ package qwerty.mobilebanking.Fragment;
 /**
  * Created by Rico Wu on 19/03/2017.
  */
+import android.app.ProgressDialog;
 import android.graphics.Typeface;
-import android.provider.ContactsContract;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -15,14 +16,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
 
-import qwerty.mobilebanking.Activity.MainActivity;
+import okhttp3.ResponseBody;
+import qwerty.mobilebanking.API.ApiModel;
 import qwerty.mobilebanking.Model.User;
 import qwerty.mobilebanking.R;
 import qwerty.mobilebanking.Model.SessionManager;
+import qwerty.mobilebanking.API.UtilsApi;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Tab1_SignIn  extends Fragment{
     private Button loginButton;
@@ -33,11 +45,14 @@ public class Tab1_SignIn  extends Fragment{
     private Typeface _typeFaceRL;
     private ArrayList<User> listUser;
     private User userLogin;
+    ProgressDialog loading;
+    ApiModel mApiService;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_home_tab1_signin, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_home_tab1_signin, container, false);
         session = new SessionManager(getActivity());
+        mApiService = UtilsApi.getAPIService();
 
         loginButton = (Button)rootView.findViewById(R.id.buttonLogin);
         _typeFaceRL = Typeface.createFromAsset(getActivity().getAssets(), "fonts/robotolight.ttf");
@@ -45,10 +60,10 @@ public class Tab1_SignIn  extends Fragment{
         loginButton.setTypeface(_typeFaceRL);
         loginButton.setText("AUTHENTICATE");
 
-        etNoRekening=(EditText)rootView.findViewById(R.id.editText);
-        etKodeAkses=(EditText)rootView.findViewById(R.id.editText2);
-        til_noRek=(TextInputLayout)rootView.findViewById(R.id.fragment_signin_textInputLayout_noRek);
-        til_kodeAkses=(TextInputLayout)rootView.findViewById(R.id.fragment_signin_textInputLayout_kodeAkses);
+        etNoRekening = (EditText)rootView.findViewById(R.id.editText);
+        etKodeAkses = (EditText)rootView.findViewById(R.id.editText2);
+        til_noRek = (TextInputLayout)rootView.findViewById(R.id.fragment_signin_textInputLayout_noRek);
+        til_kodeAkses = (TextInputLayout)rootView.findViewById(R.id.fragment_signin_textInputLayout_kodeAkses);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,12 +91,44 @@ public class Tab1_SignIn  extends Fragment{
                 else if (etKodeAkses.getText().toString().length()<8){
                     _isvalid=false;
                     til_kodeAkses.setErrorEnabled(true);
-                    til_kodeAkses.setError("Password Terlalu Pendek");
+                    til_kodeAkses.setError("Kode Akses Terlalu Pendek");
                 }
                 if(_isvalid){
-                    boolean _isregistered = false,_ismatch = false;
+                    loading = ProgressDialog.show(getActivity(), null, "Harap Tunggu...", true, false);
+                    mApiService.loginRequest(etNoRekening.getText().toString(),etKodeAkses.getText().toString())
+                            .enqueue(new Callback<ResponseBody>() {
+                                @Override
+                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                    if (response.isSuccessful()){
+                                        loading.dismiss();
+                                        try{
+                                            JSONObject result = new JSONObject(response.body().string());
+                                            if(result.getString("status").equals("true")){
+                                                userLogin = new Gson().fromJson(result.getString("data"),User.class);
+                                                session.loginUser(userLogin);
+                                                loading.dismiss();
+                                            }
+                                            else{
+                                                loading.dismiss();
+                                                Toast.makeText(getActivity(),result.getString("message"),Toast.LENGTH_LONG).show();
+                                            }
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                    else{
+                                        loading.dismiss();
+                                    }
+                                }
+                                @Override
+                                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                    loading.dismiss();
+                                }
+                            });
+                    /*boolean _isregistered = false,_ismatch = false;
                     for(User user : User.users){
-                        Log.d("array",user.getNoRek());
                         if(Objects.equals(user.getNoRek(), etNoRekening.getText().toString())){
                             if(Objects.equals(user.getKodeAkses(), etKodeAkses.getText().toString())){
                                 _ismatch=true;
@@ -91,7 +138,6 @@ public class Tab1_SignIn  extends Fragment{
                             break;
                         }
                     }
-
                     if(!_isregistered){
                         til_noRek.setErrorEnabled(true);
                         til_noRek.setError("Nomor Rekening Belum Terdaftar");
@@ -102,7 +148,7 @@ public class Tab1_SignIn  extends Fragment{
                     }
                     if(_isregistered && _ismatch){
                         session.loginUser(userLogin);
-                    }
+                    }*/
                 }
             }
         });

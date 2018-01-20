@@ -2,6 +2,7 @@ package qwerty.mobilebanking.Fragment;
 
 import android.app.Dialog;
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
@@ -21,17 +22,34 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
+import okhttp3.ResponseBody;
+import qwerty.mobilebanking.API.ApiModel;
+import qwerty.mobilebanking.API.UtilsApi;
 import qwerty.mobilebanking.Adapter.HistoriTransaksiAdapter;
 import qwerty.mobilebanking.Model.HistoriTransaksi;
 import qwerty.mobilebanking.Model.SessionManager;
 import qwerty.mobilebanking.Model.User;
 import qwerty.mobilebanking.R;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 /**
  * Created by 10 on 5/28/2017.
@@ -41,8 +59,7 @@ public class Fragment_Transfer extends Fragment implements View.OnClickListener 
     public Fragment_Transfer() {
 
     }//Konstruktor Kosong
-
-    private TextView tv_saldo;
+    private Toast toast;
     private TextInputLayout til_noRekTujuan, til_nominalTransfer;
     private EditText et_noRekTujuan,et_nominalTransfer;
     private Button btn_transfer;
@@ -55,7 +72,11 @@ public class Fragment_Transfer extends Fragment implements View.OnClickListener 
     private LinearLayout pinKeyboardLayout;
     private String pin;
     private ArrayList<ImageView> listLingkar;
+    TypeToken<List<HistoriTransaksi>> token = new TypeToken<List<HistoriTransaksi>>() {};
+    private ArrayList<HistoriTransaksi> historiTransaksi;
     private Dialog dialog;
+    ApiModel mApiService;
+    ProgressDialog loading;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -73,12 +94,12 @@ public class Fragment_Transfer extends Fragment implements View.OnClickListener 
         et_nominalTransfer = (EditText)view.findViewById(R.id.fragment_transfer_editText_nominalTransfer);
         btn_transfer = (Button)view.findViewById(R.id.fragment_transfer_button_transfer);
         historiTransaksiUserAktif = User.loggedInUser.getListTransaksi();
+        mApiService = UtilsApi.getAPIService();
 
-       adapter = new HistoriTransaksiAdapter();
+        adapter = new HistoriTransaksiAdapter();
         rView = (RecyclerView)view.findViewById(R.id.fragment_transfer_recyclerView_historiTransaksi);
         rView.setHasFixedSize(true);
         rView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter.sethistoriTransaksi(historiTransaksiUserAktif);
         rView.setAdapter(adapter);
     }
 
@@ -94,6 +115,11 @@ public class Fragment_Transfer extends Fragment implements View.OnClickListener 
                     _isvalid=false;
                     til_noRekTujuan.setErrorEnabled(true);
                     til_noRekTujuan.setError("Nomor Rekening harus 11 digit");
+                }
+                else if(Objects.equals(et_noRekTujuan.getText().toString(), User.loggedInUser.getNoRek().toString())){
+                    _isvalid=false;
+                    til_noRekTujuan.setErrorEnabled(true);
+                    til_noRekTujuan.setError("Tidak dapat transfer ke rekening sendiri");
                 }
                 else if(Integer.parseInt(et_nominalTransfer.getText().toString())<10000){
                     _isvalid=false;
@@ -252,12 +278,43 @@ public class Fragment_Transfer extends Fragment implements View.OnClickListener 
     private void cekPinFull(){
         if(pin.length()==6){
             if(Objects.equals(pin, User.loggedInUser.getPin())){
-                transfer(User.loggedInUser,Integer.parseInt(et_nominalTransfer.getText().toString()));
+                loading = ProgressDialog.show(getActivity(), null, "Harap Tunggu...", true, false);
+                mApiService.transfer(User.loggedInUser.getNoRek(),Integer.parseInt(et_nominalTransfer.getText().toString()),et_noRekTujuan.getText().toString(),".")
+                        .enqueue(new Callback<ResponseBody>() {
+                            @Override
+                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                if (response.isSuccessful()){
+                                    loading.dismiss();
+                                    try{
+                                        JSONObject result = new JSONObject(response.body().string());
+                                        if(result.getString("status").equals("true")){
+                                            Toast.makeText(getActivity(),"Berhasil",Toast.LENGTH_LONG).show();
+                                            User.loggedInUser = new Gson().fromJson(result.getString("dataRekening"),User.class);
+                                            SessionManager.with(getActivity()).updateUser(User.loggedInUser);
+                                            historiTransaksi = new Gson().fromJson(result.getString("dataHistori"), new TypeToken<List<HistoriTransaksi>>(){}.getType());
+                                            User.loggedInUser.setListTransaksi(historiTransaksi);
+                                            adapter.swap(historiTransaksi);
+                                            adapter.notifyDataSetChanged();
+                                        }
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                loading.dismiss();
+                            }
+                        });
+                /*transfer(User.loggedInUser,Integer.parseInt(et_nominalTransfer.getText().toString()));
                 User.loggedInUser.tambahListTransaksi(new HistoriTransaksi(User.loggedInUser.getNoRek(),et_noRekTujuan.getText().toString(),"Transfer ke "+et_noRekTujuan.getText(),Integer.parseInt(et_nominalTransfer.getText().toString()),new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date())));
                 User.updateUser(User.loggedInUser);
                 SessionManager.with(getActivity()).updateUser(User.loggedInUser);
                 adapter.swap(User.loggedInUser.getListTransaksi());
-                adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();*/
                 dialog.dismiss();
             }
             else {
@@ -269,6 +326,7 @@ public class Fragment_Transfer extends Fragment implements View.OnClickListener 
             }
         }
     }
+
     private void refreshLingkar(int panjangPin){
         for(ImageView imageView : listLingkar ){
             if(listLingkar.indexOf(imageView)<=panjangPin-1){

@@ -18,16 +18,29 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 
+import okhttp3.ResponseBody;
+import qwerty.mobilebanking.API.ApiModel;
+import qwerty.mobilebanking.API.UtilsApi;
 import qwerty.mobilebanking.Model.HistoriTransaksi;
 import qwerty.mobilebanking.Model.SessionManager;
 import qwerty.mobilebanking.Model.User;
 import qwerty.mobilebanking.R;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by 10 on 6/12/2017.
@@ -46,15 +59,21 @@ public class fragment_Setting extends Fragment implements View.OnClickListener {
     private Button bt_pin0,bt_pin1,bt_pin2,bt_pin3,bt_pin4,bt_pin5,bt_pin6,bt_pin7,bt_pin8,bt_pin9,bt_pinCancel;
     private ImageView iv_pin1,iv_pin2,iv_pin3,iv_pin4,iv_pin5,iv_pin6;
     private ImageButton bt_pinBackSpace;
+    private String tempKodeAkses;
+    private String tempMPin;
+    private ApiModel mApiService;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View _view = inflater.inflate(R.layout.fragment_setting,container,false);
         init(_view);
+        ambilKodeAkses();
+        ambilMPin();
         eventGantiKodeAkses();
         eventGantiPin();
         return _view;
     }
     public void init(View view){
+        mApiService = UtilsApi.getAPIService();
         bt_GantiKodeAkses = (Button)view.findViewById(R.id.fragment_setting_button_gantiKodeAkses);
         bt_gantiPin = (Button)view.findViewById(R.id.fragment_setting_button_gantipin);
     }
@@ -90,7 +109,7 @@ public class fragment_Setting extends Fragment implements View.OnClickListener {
                             _isValid=false;
                             til_Dialog_KodeAkses.setErrorEnabled(true);;
                             til_Dialog_KodeAkses.setError("Kode Akses Minimal 8 Karakter");
-                        }else if(!Objects.equals(et_Dialog_KodeAkses.getText().toString(), User.loggedInUser.getKodeAkses())){
+                        }else if(!Objects.equals(et_Dialog_KodeAkses.getText().toString(), tempKodeAkses)){
                             _isValid=false;
                             til_Dialog_KodeAkses.setErrorEnabled(true);;
                             til_Dialog_KodeAkses.setError("Kode Akses Salah");
@@ -111,8 +130,8 @@ public class fragment_Setting extends Fragment implements View.OnClickListener {
                             til_Dialog_reKodeAksesBaru.setError("Kode Akses Tidak Sesuai");
                         }
                         if(_isValid){
+                            updateKodeAkses(et_Dialog_KodeAksesBaru.getText().toString());
                             User.loggedInUser.setKodeAkses(et_Dialog_KodeAksesBaru.getText().toString());
-                            User.updateUser(User.loggedInUser);
                             SessionManager.with(getActivity()).updateUser(User.loggedInUser);
                             dialog.dismiss();
                         }
@@ -351,7 +370,7 @@ public class fragment_Setting extends Fragment implements View.OnClickListener {
     }
     private void cekPinFull1(){
         if(pin.length()==6){
-            if(Objects.equals(pin, User.loggedInUser.getPin())){
+            if(Objects.equals(pin, tempMPin)){
                 state = 1;
                 pin="";
                 refreshLingkar(pin.length());
@@ -378,6 +397,7 @@ public class fragment_Setting extends Fragment implements View.OnClickListener {
     private void cekPinFull3(){
         if(pin.length()==6){
             if(Objects.equals(pin, pinBaru)){
+                updateMPin(pinBaru);
                 User.loggedInUser.setPin(pinBaru);
                 SessionManager.with(getActivity()).updateUser(User.loggedInUser);
                 dialog.dismiss();
@@ -401,4 +421,104 @@ public class fragment_Setting extends Fragment implements View.OnClickListener {
             }
         }
     }
+
+    public void ambilKodeAkses() {
+        mApiService.getKodeAkses(User.loggedInUser.getNoRek())
+            .enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if (response.isSuccessful()) {
+                        try {
+                            JSONObject result = new JSONObject(response.body().string());
+                            if (result.getString("status").equals("true")) {
+                                 tempKodeAkses = result.getString("data");
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                }
+            });
+    }
+    public void updateKodeAkses(String kodeAksesBaru){
+        mApiService.updateKodeAkses(User.loggedInUser.getNoRek(),tempKodeAkses,kodeAksesBaru)
+                .enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful()) {
+                            try {
+                                JSONObject result = new JSONObject(response.body().string());
+                                if (result.getString("status").equals("true")) {
+                                    Toast.makeText(getActivity(),result.getString("message"),Toast.LENGTH_LONG).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                    }
+                });
+    }
+    public void ambilMPin(){
+        mApiService.getMPin(User.loggedInUser.getNoRek()).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    try {
+                        JSONObject result = new JSONObject(response.body().string());
+                        if (result.getString("status").equals("true")) {
+                            tempMPin = result.getString("data");
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
+    }
+    public void updateMPin(String mPin_baru){
+        mApiService.updateMPin(User.loggedInUser.getNoRek(),tempMPin,mPin_baru).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    try {
+                        JSONObject result = new JSONObject(response.body().string());
+                        if (result.getString("status").equals("true")) {
+                            Toast.makeText(getActivity(),result.getString("message"),Toast.LENGTH_LONG).show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
+    }
 }
+

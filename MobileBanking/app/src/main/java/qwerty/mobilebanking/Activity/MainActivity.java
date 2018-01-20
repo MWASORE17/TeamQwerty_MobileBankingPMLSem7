@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import java.util.Objects;
 
+import qwerty.mobilebanking.API.ApiModel;
 import qwerty.mobilebanking.Fragment.Fragment_Home;
 import qwerty.mobilebanking.Fragment.Fragment_Transfer;
 import qwerty.mobilebanking.Model.ItemObjek;
@@ -38,6 +39,7 @@ public class MainActivity extends Activity {
     private EditText et_kodeAkses;
     private Button bt_kodeAkses;
     private Button bt_cancel;
+    ApiModel mApiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,7 @@ public class MainActivity extends Activity {
         CheckLogin();
         event();
         inisialisasiMenu();
-        inisialisasiUser();
+        //inisialisasiUser();
         //changeFragment(new Fragment_Transfer());//<=============================GANTI FRAGMENT AWAL
         changeFragment(new Fragment_Home());
     }
@@ -126,7 +128,8 @@ public class MainActivity extends Activity {
             getApplicationContext().startActivity(intent);
         }
     }
-    private void inisialisasiUser(){
+
+    /*private void inisialisasiUser(){
         User a = new User("11111111111","password",100001,"123456" ,"Shendy Lim");
         User Rico = new User("12345678901","password",10000000,"526253", "Rico Wu");
         User b = new User("11111111112","password",100002,"123456","Sasa Marisa");
@@ -140,7 +143,7 @@ public class MainActivity extends Activity {
         User.users.add(d);
         User.users.add(e);
         User.users.add(Rico);
-    }
+    }*/
 
     /*@Override
     protected void onStop() {

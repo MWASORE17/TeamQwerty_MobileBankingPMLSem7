@@ -11,24 +11,15 @@ import java.util.Objects;
 public class User {
 
     public User(){ } //Konstruktor Kosong
-
-
-
     private int idUser;
     private String noRek;
     private String kodeAkses;
-
-
-
-
-
     private String pin;
     private int saldo;
     private String nama;
     private ArrayList<HistoriTransaksi> listTransaksi = new ArrayList<>();
     public static User loggedInUser;
     public static ArrayList<User> users = new ArrayList<>();
-
     public User(String noRek, String kodeAkses,int saldo, String pin, String nama){
         setNoRek(noRek);
         setKodeAkses(kodeAkses);
@@ -41,6 +32,10 @@ public class User {
         setKodeAkses(kodeAkses);
         setSaldo(saldo);
         setPin(pin);
+    }
+    public User(String noRek, String kodeAkses){
+        setNoRek(noRek);
+        setKodeAkses(kodeAkses);
     }
 
     //==================================SET==================================//
